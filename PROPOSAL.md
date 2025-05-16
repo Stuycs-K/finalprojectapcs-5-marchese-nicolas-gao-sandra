@@ -2,7 +2,8 @@
 
 ## Group Members:
 
-names here.(CHANGE THIS!!!!!)
+Nicolas Marchese (nmarch18)
+Sandra Gao (sgao2026)
 
 # IDEAS:
 
