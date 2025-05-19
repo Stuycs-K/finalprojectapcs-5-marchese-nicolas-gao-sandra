@@ -6,11 +6,11 @@
 
 **Slice and Dice**
 
-#### Game Description
+### Game Description
 
 We're recreating the popular mobile puzzle game Cut the Rope. The goal of the game is to deliver a suspended piece of candy by cutting the ropes that hold the candy up. Lots of physics and strategy aspects are involved in each level. There are also collectible stars and items that make a level easier! Overall, the game is simple, nice to look at, and fun to play, and that's what we want to show in our recreation.
 
-#### Expanded Description
+### Expanded Description
 
 **Minimum Viable Product:** We want to have 10 playable levels, star collection, and good visuals (sprite collection) by the end of next week.
 
