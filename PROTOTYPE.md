@@ -17,8 +17,33 @@ UML Diagrams and descriptions of key algorithms, classes, and how things fit tog
 # Intended pacing:
 
 05-21 prototype due
+
+> [] uml diagrams
+
 05-23 finalize string mechanics
+
+> [] string tension
+
+> [] interaction with candy
+
+>> [] candy physics after cutting rope
+
+> [] swinging mechanics
+
+>> [] nodes
+
+>> [] trajectories
+
+> [] swipe to cut rope
+
 05-26 level designs
+
+> [] character interactions
+
+> [] stars
+
 05-28 levels done
+
 05-30 playtesting, stylization, finish debugging
+
 06-02 project due
