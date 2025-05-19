@@ -22,14 +22,34 @@ UML Diagrams and descriptions of key algorithms, classes, and how things fit tog
 
 # Timeline:
 
-5/21: prototype due
+05-21 prototype due
 
-5/23: finalize string mechanics
+> [] uml diagrams
 
-5/26: level designs
+05-23 finalize string mechanics
 
-5/28: levels done
+> [] string tension
 
-5/30: playtesting, stylization, finish debugging
+> [] interaction with candy
 
-6/2: project due
+>> [] candy physics after cutting rope
+
+> [] swinging mechanics
+
+>> [] nodes
+
+>> [] trajectories
+
+> [] swipe to cut rope
+
+05-26 level designs
+
+> [] character interactions
+
+> [] stars
+
+05-28 levels done
+
+05-30 playtesting, stylization, finish debugging
+
+06-02 project due
