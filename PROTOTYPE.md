@@ -24,29 +24,29 @@ UML Diagrams and descriptions of key algorithms, classes, and how things fit tog
 
 05-21 prototype due
 
-> [] uml diagrams
+> [ ] uml diagrams
 
 05-23 finalize string mechanics
 
-> [] string tension
+> [ ] string tension
 
-> [] interaction with candy
+> [ ] interaction with candy
 
->> [] candy physics after cutting rope
+>> [ ] candy physics after cutting rope
 
-> [] swinging mechanics
+> [ ] swinging mechanics
 
->> [] nodes
+>> [ ] nodes
 
->> [] trajectories
+>> [ ] trajectories
 
-> [] swipe to cut rope
+> [ ] swipe to cut rope
 
 05-26 level designs
 
-> [] character interactions
+> [ ] character interactions
 
-> [] stars
+> [ ] stars
 
 05-28 levels done
 
