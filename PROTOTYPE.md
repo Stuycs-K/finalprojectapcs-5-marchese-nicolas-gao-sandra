@@ -10,12 +10,15 @@ Lots of physics and strategy aspects are involved in each level.
 There are also collectible stars and items that make a level easier!
 Overall, our game is simple, nice to look at, and fun to play.
 
-## UML Diagrams / Algorithms / Classes
+# Project Design
 
 UML Diagrams and descriptions of key algorithms, classes, and how things fit together.
 
-## Development Phases / Pacing
+# Intended pacing:
 
-How you are breaking down the project and who is responsible for which parts.
-
-A timeline with expected completion dates of parts of the project. (CHANGE THIS!!!!!)
+05-21 prototype due
+05-23 finalize string mechanics
+05-26 level designs
+05-28 levels done
+05-30 playtesting, stylization, finish debugging
+06-02 project due
