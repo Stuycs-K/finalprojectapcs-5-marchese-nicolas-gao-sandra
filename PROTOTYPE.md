@@ -32,13 +32,13 @@ UML Diagrams and descriptions of key algorithms, classes, and how things fit tog
 
 - [ ] interaction with candy
 
--- [ ] candy physics after cutting rope
+  - [ ] candy physics after cutting rope
 
 - [ ] swinging mechanics
 
--- [ ] nodes
+  - [ ] nodes
 
--- [ ] trajectories
+  - [ ] trajectories
 
 - [ ] swipe to cut rope
 
