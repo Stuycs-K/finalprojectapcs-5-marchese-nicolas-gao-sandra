@@ -22,6 +22,8 @@ UML Diagrams and descriptions of key algorithms, classes, and how things fit tog
 
 # Timeline:
 
+optional*
+
 05-21 prototype due
 
 - [ ] uml diagrams
@@ -51,5 +53,7 @@ UML Diagrams and descriptions of key algorithms, classes, and how things fit tog
 05-28 levels done
 
 05-30 playtesting, stylization, finish debugging
+
+- [ ] home screen*
 
 06-02 project due
