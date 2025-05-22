@@ -18,7 +18,7 @@ We're recreating the popular mobile puzzle game Cut the Rope. The goal of the ga
 
 # Project Design
 
-UML Diagrams and descriptions of key algorithms, classes, and how things fit together.
+![Alt text](cutTheRopeUML.png?raw=true "uml diagram")
 
 # Timeline:
 
