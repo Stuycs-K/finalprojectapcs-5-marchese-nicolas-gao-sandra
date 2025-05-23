@@ -1,9 +1,9 @@
 public abstract class Node {
   private int mass;
-  private Vector position;
-  private Vector acceleration;
+  private PVector position;
+  private PVector acceleration;
   
-  public Node (int m, Vector pos, Vector acc) {
+  public Node (int m, PVector pos, PVector acc) {
     mass = m;
     position = pos;
     acceleration = acc;
@@ -12,16 +12,17 @@ public abstract class Node {
   public int getmass() {
     return mass;
   }
-  public Vector getpos() {
+  public PVector getpos() {
     return position;
   }
-  public Vector getacc() {
+  public PVector getacc() {
     return acceleration;
   }
   
-  public Vector calculateVector(Node n1, Node n2) {
+  public PVector calculateVector(Node n1, Node n2) {
     return null;
   }
-  public void apply(Vector v) {
+  public void apply(PVector v) {
     position.add(v);
   }
+}
