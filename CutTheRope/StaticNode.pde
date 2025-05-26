@@ -1,6 +1,9 @@
 public class StaticNode extends Node {
+  private String img;
+  
   public StaticNode(PVector pos) {
     super(0, pos, new PVector(0,0));
+    img = "";
   }
   
   public boolean inRange(Rope r) {
