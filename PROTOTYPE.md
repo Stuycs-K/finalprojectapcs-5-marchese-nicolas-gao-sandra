@@ -22,6 +22,8 @@ We're recreating the popular mobile puzzle game Cut the Rope. The goal of the ga
 
 # Timeline:
 
+optional*
+
 05-21 prototype due
 
 - [ ] uml diagrams
@@ -51,5 +53,7 @@ We're recreating the popular mobile puzzle game Cut the Rope. The goal of the ga
 05-28 levels done
 
 05-30 playtesting, stylization, finish debugging
+
+- [ ] home screen*
 
 06-02 project due
