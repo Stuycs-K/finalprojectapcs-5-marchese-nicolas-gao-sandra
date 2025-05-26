@@ -1,3 +1,4 @@
+private PImage;
 void draw(){
   
 }
