@@ -15,10 +15,10 @@ public abstract class Node {
   public PVector getpos() {
     return position;
   }
-  public int getx() {
+  public float getx() {
     return position.x;
   }
-  public int gety() {
+  public float gety() {
     return position.y;
   }
   public PVector getacc() {
@@ -26,9 +26,11 @@ public abstract class Node {
   }
   
   public PVector calculateVector(Node n1, Node n2) {
-    return null;
+    return null; // placeholder
   }
+  
   public void apply(PVector v) {
     position.add(v);
   }
+  
 }

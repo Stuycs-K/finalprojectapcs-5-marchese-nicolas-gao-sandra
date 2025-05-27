@@ -1,5 +1,5 @@
-PImage sprite;
-PVector winPos;
+// PImage sprite;
+int winPosX, winPosY;
 int currentLevel;
 ArrayList<Rope> ropes;
 Candy candy;
@@ -11,11 +11,11 @@ void draw(){
 }
 
 void run() {
-  
+  return;
 }
 
 void setup(){
-  sprite = loadImage("");
+  // sprite = loadImage("");
   currentLevel = 0; //start on main screen ?
   loadLevel(currentLevel);
 }
@@ -25,21 +25,21 @@ void loadLevel(int level) {
   stars = new ArrayList<PVector>();
   
   if (level == 1) {
-      winPos = new PVector(0,0);
-      ropes.add(new Rope(10));
+      winPosX = 0; winPosY = 0;
+      ropes.add(new Rope(300, 100, 310, 400));
       stars.add(new PVector(10, 0));
   }
   
-  image(sprite, winPos.x, winPos.y);
+  // image(sprite, winPosX, winPosY);
 }
 
 void win() {
-  
+  return;
 }
 
 void mouseClicked() {
-  
+  return;
 }
 void mouseDragged() {
-  isCut(pmouseX, pmouseY, mouseX, mouseY);
+  // isCut(pmouseX, pmouseY, mouseX, mouseY);
 }
