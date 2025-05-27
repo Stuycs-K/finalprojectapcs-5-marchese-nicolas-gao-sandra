@@ -1,6 +1,5 @@
-import java.util.LinkedList;
 public class Rope {
-  private LinkedList<Node> nodes;
+  private ArrayList<Node> nodes;
   private boolean show;
 
   public static final double k = 0.9;
@@ -8,6 +7,11 @@ public class Rope {
   public static final double dampen = .02;
   
   public boolean isCut(int pmouseX, int pmouseY, int mouseX, int mouseY) {
+    for (int i = 0; i < nodes.size() - 1; i++) {
+      Node n1 = nodes.get(i);
+      Node n2 = nodes.get(i + 1);
+      if (min(pmouseX, mouseX) < min(n1.getx(), n2.getx()) && max(pmouseX, mouseX) > max(n1.getx(), n2.getx()) && min(pmouseY, mouseY) > min(n1.gety(), n2.gety()) && max(pmouseY, mouseY) < max(n1.gety(), n2.gety())) return true;
+    }
     return false;
   }
   public void removeNode() {
@@ -20,7 +24,12 @@ public class Rope {
     
   }
   
-  public Rope(int len) {
-    
+  public Rope(int x1, int y1, int x2, int y2) {
+    nodes = new ArrayList<Node>();
+    nodes.add(new StaticNode(new PVector(x1, y1)));
+    for (int i = 1; i < ceil((float) (dist(x1, y1, x2, y2) / len)); i++) {
+      nodes.add(new RopeNode(1, new PVector(x1 + min(5, x1 - x2) * i, x1 + min(5, y1 - y2) * i), new PVector(0,0)));
+    }
+    show = true;
   }
 }

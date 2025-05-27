@@ -15,6 +15,12 @@ public abstract class Node {
   public PVector getpos() {
     return position;
   }
+  public int getx() {
+    return position.x;
+  }
+  public int gety() {
+    return position.y;
+  }
   public PVector getacc() {
     return acceleration;
   }
