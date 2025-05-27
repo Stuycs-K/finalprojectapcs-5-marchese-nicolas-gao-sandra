@@ -46,7 +46,7 @@ void win() {
   return;
 }
 void lose() {
-  
+  return;
 }
 
 void mouseClicked() {

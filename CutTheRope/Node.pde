@@ -32,5 +32,6 @@ public abstract class Node {
   public void apply(PVector v) {
     position.add(v);
   }
+  abstract void display();
   
 }
