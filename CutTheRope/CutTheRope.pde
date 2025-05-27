@@ -36,6 +36,9 @@ void loadLevel(int level) {
 void win() {
   return;
 }
+void lose() {
+  
+}
 
 void mouseClicked() {
   return;
