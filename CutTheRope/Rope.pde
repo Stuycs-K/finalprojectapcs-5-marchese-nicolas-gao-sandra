@@ -24,6 +24,7 @@ public class Rope {
       nodes.get(i).display();
       line(nodes.get(i).getx(), nodes.get(i).gety(), nodes.get(i + 1).getx(), nodes.get(i + 1).gety());
     }
+    nodes.get(nodes.size() - 1).display();
   }
   
   public Rope(float x1, float y1, float x2, float y2) {
