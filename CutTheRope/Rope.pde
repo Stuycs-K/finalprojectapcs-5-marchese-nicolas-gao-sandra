@@ -1,6 +1,5 @@
 public class Rope {
   private ArrayList<Node> nodes;
-  private boolean show;
 
   public static final double k = 0.9;
   public static final double len = 10;
@@ -21,7 +20,10 @@ public class Rope {
     
   }
   public void display() {
-    
+    for(int i = 0; i - 1 < nodes.size(); i++) {
+      nodes.get(i).display();
+      line(nodes.get(i).getx(), nodes.get(i).gety(), nodes.get(i + 1).getx(), nodes.get(i + 1).gety());
+    }
   }
   
   public Rope(float x1, float y1, float x2, float y2) {
