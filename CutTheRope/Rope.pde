@@ -24,12 +24,17 @@ public class Rope {
     
   }
   
-  public Rope(int x1, int y1, int x2, int y2) {
+  public Rope(float x1, float y1, float x2, float y2) {
+    this(new StaticNode(x1, y1), new StaticNode(x2, y2));
+  }
+  public Rope(Node n1, Node n2) {
+    int points = (int) (n1.dist(n2) / len);
+    int xStep = (int) (n2.getx() - n1.getx()) / points;
+    int yStep = (int) (n2.gety() - n1.gety()) / points;
     nodes = new ArrayList<Node>();
-    nodes.add(new StaticNode(new PVector(x1, y1)));
-    for (int i = 1; i < ceil((float) (dist(x1, y1, x2, y2) / len)); i++) {
-      nodes.add(new RopeNode(1, new PVector(x1 + min(5, x1 - x2) * i, x1 + min(5, y1 - y2) * i), new PVector(0,0)));
+    nodes.add(n1);
+    for (int i = 0; i < points; i++) {
+      nodes.add(new RopeNode(0, n1.getx() + (i + 1) * xStep, n1.gety() + (i + 1) * yStep));
     }
-    show = true;
   }
 }

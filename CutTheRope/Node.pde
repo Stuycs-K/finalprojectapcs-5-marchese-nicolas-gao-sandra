@@ -33,4 +33,7 @@ public abstract class Node {
     position.add(v);
   }
   
+  public float dist(Node other) {
+    return getpos().dist(other.getpos());
+  }
 }
