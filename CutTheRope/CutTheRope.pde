@@ -25,7 +25,7 @@ void run() {
 void setup(){
   size(1000,1000);
   // sprite = loadImage("");
-  currentLevel = 0; //start on main screen ?
+  currentLevel = 1; //start on main screen ?
   loadLevel(currentLevel);
 }
 
@@ -35,7 +35,8 @@ void loadLevel(int level) {
   
   if (level == 1) {
       winPosX = 0; winPosY = 0;
-      ropes.add(new Rope(300, 100, 310, 400));
+      candy = new Candy(winPosX, winPosY);
+      ropes.add(new Rope(new StaticNode(300, 100), candy));
       stars.add(new PVector(10, 0));
   }
   

@@ -5,6 +5,9 @@ public class Candy extends Node {
     super(0, pos, new PVector(0,0));
     img = "";
   }
+  public Candy(float x, float y) {
+    this(new PVector(x,y));
+  }
   
   public boolean inMouth() {
     return false;
