@@ -17,7 +17,7 @@ public class Candy extends Node {
   }
   
   public void addTo(Rope r) {
-    
+    r.addNode(this);
   }
   public void bounce() {
     
