@@ -1,31 +1,34 @@
-// PImage sprite;
+PImage sprite;
 int winPosX, winPosY;
 int currentLevel;
 ArrayList<Rope> ropes;
 Candy candy;
 ArrayList<PVector> stars;
-boolean onScreen = true;
+boolean onScreen;
 
 void draw(){
+  //run();
   while(!candy.inMouth() && onScreen) {
     onScreen = candy.isOnScreen();
     run();
   }
-  if (!onScreen) {
-    lose();
-  } else {
-    win();
-  }
+  //if (!onScreen) {
+  //  lose();
+  //} else {
+  //  win();
+  //}
 }
 
 void run() {
-  return;
+  image(sprite, winPosX - 250 / 10, winPosY - 258 / 10, 250 / 3, 258 / 3); // calculates upper left corner + scales image down
+  candy.display();
 }
 
 void setup(){
   size(1000,1000);
-  // sprite = loadImage("");
-  currentLevel = 0; //start on main screen ?
+  background(255);
+  sprite = loadImage("Sprites/omnom.png");
+  currentLevel = 1; //start on main screen ?
   loadLevel(currentLevel);
 }
 
@@ -34,19 +37,19 @@ void loadLevel(int level) {
   stars = new ArrayList<PVector>();
   
   if (level == 1) {
-      winPosX = 0; winPosY = 0;
-      ropes.add(new Rope(300, 100, 310, 400));
+      winPosX = 50; winPosY = 50;
+      candy = new Candy(winPosX, winPosY);
+      ropes.add(new Rope(new StaticNode(300, 100), candy));
       stars.add(new PVector(10, 0));
+      onScreen = true;
   }
-  
-  // image(sprite, winPosX, winPosY);
 }
 
 void win() {
   return;
 }
 void lose() {
-  
+  return;
 }
 
 void mouseClicked() {

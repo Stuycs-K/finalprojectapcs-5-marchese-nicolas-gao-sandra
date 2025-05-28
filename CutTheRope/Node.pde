@@ -9,6 +9,8 @@ public abstract class Node {
     acceleration = acc;
   }
   
+  abstract void display();
+  
   public int getmass() {
     return mass;
   }
@@ -31,6 +33,9 @@ public abstract class Node {
   
   public void apply(PVector v) {
     position.add(v);
-  }
+  }  
   
+  public float dist(Node other) {
+    return getpos().dist(other.getpos());
+  }
 }

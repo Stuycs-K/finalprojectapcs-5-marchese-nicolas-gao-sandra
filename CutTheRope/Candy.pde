@@ -1,9 +1,12 @@
 public class Candy extends Node {
-  String img;
+  PImage img;
   
   public Candy(PVector pos) {
     super(0, pos, new PVector(0,0));
-    img = "";
+    img = loadImage("Sprites/candy.png");
+  }
+  public Candy(float x, float y) {
+    this(new PVector(x,y));
   }
   
   public boolean inMouth() {
@@ -20,6 +23,6 @@ public class Candy extends Node {
     
   }
   public void display() {
-  
+    image(img, getx(), gety(), 250 / 5, 258 / 5);
   }
 }
