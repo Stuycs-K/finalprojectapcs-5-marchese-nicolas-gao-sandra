@@ -1,7 +1,7 @@
 public abstract class Node {
-  private int mass;
-  private PVector position;
-  private PVector acceleration;
+  public int mass;
+  public PVector position;
+  public PVector acceleration;
   
   public Node (int m, PVector pos, PVector acc) {
     mass = m;
