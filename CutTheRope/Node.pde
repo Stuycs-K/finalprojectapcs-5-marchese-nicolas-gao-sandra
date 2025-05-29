@@ -1,12 +1,12 @@
 public abstract class Node {
-  public int mass;
-  public PVector position;
-  public PVector acceleration;
+  private int mass;
+  private PVector position, velocity, acceleration;
   
-  public Node (int m, PVector pos, PVector acc) {
+  public Node (int m, PVector pos, PVector vel) {
     mass = m;
     position = pos;
-    acceleration = acc;
+    velocity = vel;
+    acceleration = new PVector(0,0);
   }
   
   abstract void display();
@@ -36,8 +36,9 @@ public abstract class Node {
     return null; // placeholder
   }
   
-  public void apply(PVector v) {
-    position.add(v);
+  public void move() {
+    velocity.add(acceleration);
+    
   }  
   
   public float dist(Node other) {
