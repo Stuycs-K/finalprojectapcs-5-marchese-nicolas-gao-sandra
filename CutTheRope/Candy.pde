@@ -20,12 +20,12 @@ public class Candy extends Node {
   public void attract(Node other, float ropeDist){}// placeholder
   
   public void addTo(Rope r) {
-    
+    r.addNode(this);
   }
   public void bounce() {
     
   }
   public void display() {
-    image(img, getx(), gety(), 250 / 5, 258 / 5);
+    image(img, getx(), gety(), 250 / 6, 258 / 6);
   }
 }

@@ -1,5 +1,5 @@
 PImage sprite;
-int winPosX, winPosY;
+int winPosX, winPosY, scale;
 int currentLevel;
 ArrayList<Rope> ropes;
 Candy candy;
@@ -7,11 +7,11 @@ ArrayList<PVector> stars;
 boolean onScreen;
 
 void draw(){
-  //run();
-  while(!candy.inMouth() && onScreen) {
-    onScreen = candy.isOnScreen();
-    run();
-  }
+  run();
+  //while(!candy.inMouth() && onScreen) {
+  //  onScreen = candy.isOnScreen();
+  //  run();
+  //}
   //if (!onScreen) {
   //  lose();
   //} else {
@@ -20,14 +20,16 @@ void draw(){
 }
 
 void run() {
-  image(sprite, winPosX - 250 / 10, winPosY - 258 / 10, 250 / 3, 258 / 3); // calculates upper left corner + scales image down
+  image(sprite, winPosX - 250 / scale / 2, winPosY - 258 / scale / 2, 250 / scale, 258 / scale); // calculates upper left corner + scales image down
   candy.display();
 }
 
 void setup(){
-  size(1000,1000);
+  size(540,960); // 9:16 phone aspect ratio
   background(255);
   sprite = loadImage("Sprites/omnom.png");
+  scale = 4;
+  
   currentLevel = 1; //start on main screen ?
   loadLevel(currentLevel);
 }
@@ -37,8 +39,8 @@ void loadLevel(int level) {
   stars = new ArrayList<PVector>();
   
   if (level == 1) {
-      winPosX = 50; winPosY = 50;
-      candy = new Candy(winPosX, winPosY);
+      winPosX = 490; winPosY = 900;
+      candy = new Candy(270, 500);
       ropes.add(new Rope(new StaticNode(300, 100), candy));
       stars.add(new PVector(10, 0));
       onScreen = true;

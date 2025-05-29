@@ -15,7 +15,9 @@ public class Rope {
     }
     return false;
   }
-  
+  public void addNode(Node n) {
+    nodes.add(n);
+  }
   public void removeNode() {
     
   }
