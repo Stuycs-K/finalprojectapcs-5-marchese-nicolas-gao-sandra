@@ -3,6 +3,7 @@ public class Rope {
 
   public static final double k = 0.9;
   public static final double len = 10;
+  public static final double nodeDist;
   public static final double dampen = .02;
   
   public boolean isCut(int pmouseX, int pmouseY, int mouseX, int mouseY) {
@@ -13,12 +14,18 @@ public class Rope {
     }
     return false;
   }
+  
   public void removeNode() {
     
   }
+  
   public void stretch() {
-    
+    for (int i = 0; i < nodes.size(); i++){
+      nodes.get(i).attract(nodes.get(i+1));
+      nodes.get(i+1).attract(nodes.get(i));
+    }
   }
+  
   public void display() {
     for(int i = 0; i - 1 < nodes.size(); i++) {
       nodes.get(i).display();
@@ -34,6 +41,7 @@ public class Rope {
     int points = (int) (n1.dist(n2) / len);
     int xStep = (int) (n2.getx() - n1.getx()) / points;
     int yStep = (int) (n2.gety() - n1.gety()) / points;
+    nodeDist = Math.sqrt(xStep*xStep + yStep*yStep);
     nodes = new ArrayList<Node>();
     nodes.add(n1);
     for (int i = 0; i < points; i++) {
