@@ -1,5 +1,6 @@
 public class Rope {
-  private ArrayList<RopeNode> nodes;
+  
+  private ArrayList<Node> nodes;
 
   public static final double k = 0.9;
   public static final double len = 10;
@@ -37,6 +38,7 @@ public class Rope {
   public Rope(float x1, float y1, float x2, float y2) {
     this(new StaticNode(x1, y1), new StaticNode(x2, y2));
   }
+  
   public Rope(Node n1, Node n2) {
     int points = (int) (n1.dist(n2) / len);
     int xStep = (int) (n2.getx() - n1.getx()) / points;
@@ -48,4 +50,5 @@ public class Rope {
       nodes.add(new RopeNode(0, n1.getx() + (i + 1) * xStep, n1.gety() + (i + 1) * yStep));
     }
   }
+  
 }

@@ -10,24 +10,19 @@ public abstract class Node {
   }
   
   abstract void display();
-  abstract void attract(Node other, float nodeDist);
   
   public int getmass() {
     return mass;
   }
-  
   public PVector getpos() {
     return position;
   }
-  
   public float getx() {
     return position.x;
   }
-  
   public float gety() {
     return position.y;
   }
-  
   public PVector getacc() {
     return acceleration;
   }
