@@ -12,9 +12,12 @@ public class Candy extends Node {
   public boolean inMouth() {
     return false;
   }
+  
   public boolean isOnScreen() {
     return !(getx() < 0 || getx() > width || gety() < 0 || gety() > height);
   }
+  
+  public void attract(Node other, float ropeDist){}// placeholder
   
   public void addTo(Rope r) {
     
