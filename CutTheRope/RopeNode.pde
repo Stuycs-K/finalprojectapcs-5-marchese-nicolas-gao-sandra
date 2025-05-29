@@ -11,7 +11,7 @@ public class RopeNode extends Node {
     return;
   }
   
-  public void attract(RopeNode other, float nodeDist){
+  public void attract(Node other, float nodeDist){
     PVector force = PVector.sub(other.getpos(), getpos());
     float d = force.mag() - nodeDist;
     force.setMag(d * 50); // spring constant scaling factor
