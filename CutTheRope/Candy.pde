@@ -23,6 +23,6 @@ public class Candy extends Node {
     
   }
   public void display() {
-    image(img, getx(), gety(), 250 / 5, 258 / 5);
+    image(img, getx(), gety(), 250 / 6, 258 / 6);
   }
 }
