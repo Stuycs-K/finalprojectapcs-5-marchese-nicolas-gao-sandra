@@ -41,6 +41,8 @@ void loadLevel(int level) {
   stars = new ArrayList<PVector>();
   
   if (level == 1) {
+      PImage bg = loadImage("Sprites/bg01.png"); bg.resize(540, 960);
+      background(bg);
       winPosX = 490; winPosY = 900;
       candy = new Candy(270, 500);
       ropes.add(new Rope(new StaticNode(300, 100), candy));
