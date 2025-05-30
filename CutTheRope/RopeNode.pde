@@ -8,6 +8,7 @@ public class RopeNode extends Node {
   }
   
   public void display() {
+    circle(getx(), gety(), 2);
     return;
   }
   

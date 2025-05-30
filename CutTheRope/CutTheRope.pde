@@ -7,19 +7,19 @@ ArrayList<PVector> stars;
 boolean onScreen;
 Rope e;
 
-final float g = 2;
-final float k = .9;
-final float len = 15;
+final float g = 0.1;
+final float k = 0.9;
+final float len = 90;
 // final float dampen = .02;
 
 void draw(){
   background(255);
-  e.stretch();
-  e.display();
-  //while(!candy.inMouth() && onScreen) {
-  //  onScreen = candy.isOnScreen();
-  //  run();
-  //}
+  if(!candy.inMouth() && onScreen) {
+    onScreen = candy.isOnScreen();
+    candy.move(new PVector(0,0));
+    candy.display();
+    // run();
+  }
   //if (!onScreen) {
   //  lose();
   //} else {
@@ -29,7 +29,8 @@ void draw(){
 
 void run() {
   image(sprite, winPosX - 250 / scale / 2, winPosY - 258 / scale / 2, 250 / scale, 258 / scale); // calculates upper left corner + scales image down
-  candy.display();
+  //candy.move(new PVector(0,0));
+  //candy.display();
 }
 
 void setup(){

@@ -39,7 +39,7 @@ public abstract class Node {
   }
   
   public void move(PVector f) {
-    acceleration.add(f.div(mass));
+    acceleration.add(f.div(getmass()));
     acceleration.add(new PVector(0, g));
     
     velocity.add(acceleration);
