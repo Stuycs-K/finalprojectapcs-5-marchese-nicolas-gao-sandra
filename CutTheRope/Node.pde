@@ -1,4 +1,5 @@
 public abstract class Node {
+  
   private int mass;
   private PVector position, velocity, acceleration;
   
@@ -50,4 +51,5 @@ public abstract class Node {
   public float dist(Node other) {
     return getpos().dist(other.getpos());
   }
+  
 }

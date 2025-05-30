@@ -31,12 +31,12 @@ void setup(){
   background(255);
   sprite = loadImage("Sprites/omnom.png");
   scale = 4;
-  
   currentLevel = 1; //start on main screen ?
   loadLevel(currentLevel);
 }
 
 void loadLevel(int level) {
+  
   ropes = new ArrayList<Rope>();
   stars = new ArrayList<PVector>();
   
@@ -47,6 +47,7 @@ void loadLevel(int level) {
       stars.add(new PVector(10, 0));
       onScreen = true;
   }
+  
 }
 
 void win() {
