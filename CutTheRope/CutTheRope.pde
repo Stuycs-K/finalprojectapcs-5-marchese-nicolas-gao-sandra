@@ -14,17 +14,18 @@ final float len = 90;
 
 void draw(){
   background(255);
-  if(!candy.inMouth() && onScreen) {
+  StaticNode n = new StaticNode(40, 40);
+  n.display();
+  if(!candy.inMouth() && onScreen){
     onScreen = candy.isOnScreen();
-    candy.move(new PVector(0,0));
-    candy.display();
-    // run();
+    run();
   }
-  //if (!onScreen) {
-  //  lose();
-  //} else {
-  //  win();
-  //}
+  if (!onScreen) {
+    lose();
+  }
+  else {
+    win();
+  }
 }
 
 void run() {
@@ -61,6 +62,7 @@ void loadLevel(int level) {
 void win() {
   return;
 }
+
 void lose() {
   return;
 }
@@ -68,6 +70,7 @@ void lose() {
 void mouseClicked() {
   return;
 }
+
 void mouseDragged() {
   // isCut(pmouseX, pmouseY, mouseX, mouseY);
 }
