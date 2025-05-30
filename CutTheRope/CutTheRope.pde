@@ -8,8 +8,8 @@ boolean onScreen;
 Rope e;
 
 final float g = 0.1;
-final float k = 0.9;
-final float len = 90;
+final float k = 1;
+final float len = 50;
 // final float dampen = .02;
 
 void draw(){
@@ -30,8 +30,12 @@ void draw(){
 
 void run() {
   image(sprite, winPosX - 250 / scale / 2, winPosY - 258 / scale / 2, 250 / scale, 258 / scale); // calculates upper left corner + scales image down
-  //candy.move(new PVector(0,0));
-  //candy.display();
+  for (Rope r : ropes) {
+    r.stretch();
+    r.display();
+  }
+  // candy.move(new PVector(0,0));
+  // candy.display();
 }
 
 void setup(){

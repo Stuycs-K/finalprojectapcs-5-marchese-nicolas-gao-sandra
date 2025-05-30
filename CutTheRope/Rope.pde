@@ -56,7 +56,7 @@ public class Rope {
     nodes = new ArrayList<Node>();
     nodes.add(n1);
     for (int i = 0; i < points; i++) {
-      nodes.add(new RopeNode(10, n1.getx() + (i + 1) * xStep, n1.gety() + (i + 1) * yStep));
+      nodes.add(new RopeNode(n1.getx() + (i + 1) * xStep, n1.gety() + (i + 1) * yStep));
     }
     nodes.add(n2);
   }
