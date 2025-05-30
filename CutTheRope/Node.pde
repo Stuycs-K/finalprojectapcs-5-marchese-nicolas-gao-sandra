@@ -10,7 +10,6 @@ public abstract class Node {
   }
   
   abstract void display();
-  abstract void attract(Node other, float nodeDist);
   
   public int getmass() {
     return mass;
@@ -40,6 +39,13 @@ public abstract class Node {
     velocity.add(acceleration);
     
   }  
+  
+  public void attract(Node other, float nodeDist){
+    PVector force = PVector.sub(other.getpos(), getpos());
+    float d = force.mag() - nodeDist;
+    force.setMag(d * 50); // spring constant scaling factor
+    getacc().add(force.div(getmass()));
+  }
   
   public float dist(Node other) {
     return getpos().dist(other.getpos());
