@@ -12,17 +12,16 @@ public class Candy extends Node {
   public boolean inMouth() {
     return false;
   }
+  
   public boolean isOnScreen() {
     return !(getx() < 0 || getx() > width || gety() < 0 || gety() > height);
   }
   
   public void addTo(Rope r) {
-    
+    r.addNode(this);
   }
-  public void bounce() {
-    
-  }
+  
   public void display() {
-    image(img, getx(), gety(), 250 / 5, 258 / 5);
+    image(img, getx(), gety(), 250 / 6, 258 / 6);
   }
 }
