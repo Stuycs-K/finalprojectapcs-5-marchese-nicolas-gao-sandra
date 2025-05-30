@@ -7,7 +7,10 @@ ArrayList<PVector> stars;
 boolean onScreen;
 
 void draw(){
-  run();
+  // run();
+  StaticNode n = new StaticNode(40, 40);
+  n.display();
+  candy.display();
   //while(!candy.inMouth() && onScreen) {
   //  onScreen = candy.isOnScreen();
   //  run();
