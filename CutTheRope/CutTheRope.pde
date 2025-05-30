@@ -5,12 +5,17 @@ ArrayList<Rope> ropes;
 Candy candy;
 ArrayList<PVector> stars;
 boolean onScreen;
+Rope e;
+
+final float g = 2;
+final float k = .9;
+final float len = 15;
+// final float dampen = .02;
 
 void draw(){
-  // run();
-  StaticNode n = new StaticNode(40, 40);
-  n.display();
-  candy.display();
+  background(255);
+  e.stretch();
+  e.display();
   //while(!candy.inMouth() && onScreen) {
   //  onScreen = candy.isOnScreen();
   //  run();
@@ -32,6 +37,8 @@ void setup(){
   background(255);
   sprite = loadImage("Sprites/omnom.png");
   scale = 4;
+  
+  e = new Rope(100, 100, 500, 500);
   
   currentLevel = 1; //start on main screen ?
   loadLevel(currentLevel);

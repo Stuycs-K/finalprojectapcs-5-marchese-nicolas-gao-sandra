@@ -2,9 +2,6 @@ public class Rope {
   
   private ArrayList<Node> nodes;
 
-  public static final double k = 0.9;
-  public static final double len = 10;
-  public static final double dampen = .02;
   public float nodeDist;
   
   public boolean isCut(int pmouseX, int pmouseY, int mouseX, int mouseY) {
@@ -23,14 +20,24 @@ public class Rope {
   }
   
   public void stretch() {
-    for (int i = 0; i < nodes.size(); i++){
-      nodes.get(i).attract(nodes.get(i+1), nodeDist);
-      nodes.get(i+1).attract(nodes.get(i), nodeDist);
+    for (int i = 0; i + 1 < nodes.size(); i++){
+      Node n1 = nodes.get(i);
+      Node n2 = nodes.get(i + 1);
+      
+      // print(n1.getpos());
+      
+      try {
+        n1.move(n1.calculateVector(n2));
+      } catch (NullPointerException e) {}
+      
+      try {
+        n2.move(n2.calculateVector(n1));
+      } catch (NullPointerException e) {}
     }
   }
   
   public void display() {
-    for(int i = 0; i - 1 < nodes.size(); i++) {
+    for(int i = 0; i + 1 < nodes.size(); i++) {
       nodes.get(i).display();
       line(nodes.get(i).getx(), nodes.get(i).gety(), nodes.get(i + 1).getx(), nodes.get(i + 1).gety());
     }
@@ -49,8 +56,9 @@ public class Rope {
     nodes = new ArrayList<Node>();
     nodes.add(n1);
     for (int i = 0; i < points; i++) {
-      nodes.add(new RopeNode(0, n1.getx() + (i + 1) * xStep, n1.gety() + (i + 1) * yStep));
+      nodes.add(new RopeNode(10, n1.getx() + (i + 1) * xStep, n1.gety() + (i + 1) * yStep));
     }
+    nodes.add(n2);
   }
   
 }
