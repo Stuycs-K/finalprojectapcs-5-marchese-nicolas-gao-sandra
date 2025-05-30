@@ -17,14 +17,10 @@ public class Candy extends Node {
     return !(getx() < 0 || getx() > width || gety() < 0 || gety() > height);
   }
   
-  public void attract(Node other, float ropeDist){}// placeholder
-  
   public void addTo(Rope r) {
     r.addNode(this);
   }
-  public void bounce() {
-    
-  }
+  
   public void display() {
     image(img, getx(), gety(), 250 / 6, 258 / 6);
   }

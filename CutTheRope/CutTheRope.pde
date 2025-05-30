@@ -7,16 +7,18 @@ ArrayList<PVector> stars;
 boolean onScreen;
 
 void draw(){
-  run();
-  //while(!candy.inMouth() && onScreen) {
-  //  onScreen = candy.isOnScreen();
-  //  run();
-  //}
-  //if (!onScreen) {
-  //  lose();
-  //} else {
-  //  win();
-  //}
+  StaticNode n = new StaticNode(40, 40);
+  n.display();
+  if(!candy.inMouth() && onScreen){
+    onScreen = candy.isOnScreen();
+    run();
+  }
+  if (!onScreen) {
+    lose();
+  }
+  else {
+    win();
+  }
 }
 
 void run() {
@@ -50,6 +52,7 @@ void loadLevel(int level) {
 void win() {
   return;
 }
+
 void lose() {
   return;
 }
@@ -57,6 +60,7 @@ void lose() {
 void mouseClicked() {
   return;
 }
+
 void mouseDragged() {
   // isCut(pmouseX, pmouseY, mouseX, mouseY);
 }
