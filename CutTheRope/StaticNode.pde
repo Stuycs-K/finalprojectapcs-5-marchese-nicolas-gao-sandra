@@ -15,6 +15,9 @@ public class StaticNode extends Node {
   public void addTo(Rope r) {
   
   }
+  
+  public void attract(Node other, float nodeDist){}
+  
   public void display() {
     
   }

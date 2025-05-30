@@ -16,3 +16,8 @@ Added proposals, renamed this dev log.
 * Fix implementation put in over the weekend
 * Made sure UML diagrams were up to par
 * Downloaded/edited sprite sheet, saved necessary sprites to repo
+
+### 2025-05-29 (Physics)
+* Add attract method for Ropes between RopeNodes
+* Fix errors in class implementations
+* Small bugfixes in code
