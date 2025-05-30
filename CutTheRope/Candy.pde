@@ -1,4 +1,5 @@
 public class Candy extends Node {
+  
   PImage img;
   
   public Candy(PVector pos) {
@@ -24,4 +25,5 @@ public class Candy extends Node {
   public void display() {
     image(img, getx(), gety(), 250 / 6, 258 / 6);
   }
+  
 }
