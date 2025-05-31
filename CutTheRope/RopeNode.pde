@@ -1,6 +1,6 @@
 public class RopeNode extends Node {
   public RopeNode (PVector pos, PVector vel) {
-    super(1, pos, vel);
+    super(100, pos, vel);
   }
   
   public RopeNode (float x, float y) {

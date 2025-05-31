@@ -8,14 +8,12 @@ boolean onScreen;
 Rope e;
 
 final float g = 0.1;
-final float k = 1;
-final float len = 50;
+final float k = 2;
+final float len = 100;
 // final float dampen = .02;
 
 void draw(){
   background(255);
-  StaticNode n = new StaticNode(40, 40);
-  n.display();
   if(!candy.inMouth() && onScreen){
     onScreen = candy.isOnScreen();
     run();
