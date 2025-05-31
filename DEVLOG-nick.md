@@ -21,3 +21,8 @@ Added proposals, renamed this dev log.
 * Add attract method for Ropes between RopeNodes
 * Fix errors in class implementations
 * Small bugfixes in code
+
+### 2025-05-30 (Physics)
+* Finish rope physics study before implementation
+* Fix small bugs in various methods including draw()
+* Add background

@@ -1,13 +1,14 @@
 public class RopeNode extends Node {
-  public RopeNode (int m, PVector pos, PVector acc) {
-    super(m, pos, acc);
+  public RopeNode (PVector pos, PVector vel) {
+    super(100, pos, vel);
   }
   
-  public RopeNode (int m, float x, float y) {
-    this(m, new PVector(x, y), new PVector(0,0));
+  public RopeNode (float x, float y) {
+    this(new PVector(x, y), new PVector(0,0));
   }
   
   public void display() {
+    circle(getx(), gety(), 2);
     return;
   }
   
