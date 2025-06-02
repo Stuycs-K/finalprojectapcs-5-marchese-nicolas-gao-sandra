@@ -10,11 +10,7 @@ public class StaticNode extends Node {
   public StaticNode(float x, float y) {
     this(new PVector(x, y));
   }
-  
-  public boolean inRange(Rope r) {
-    return false;
-  }
-  
+
   public void addTo(Rope r) {
     r.addNode(this);
   }
