@@ -28,8 +28,6 @@ public class Rope {
     if (nodes.remove(candy)){
       if (ropeID == 1) {inRope1 = false;}
       if (ropeID == 2) {inRope2 = false;}
-      if (ropeID == 3) {inRope3 = false;}
-      if (ropeID == 4) {inRope4 = false;}
     }
   }
   

@@ -6,16 +6,16 @@ ArrayList<Rope> ropes;
 Candy candy;
 // ArrayList<PVector> stars; additional feature
 boolean onScreen;
-boolean inAnyRope;
-boolean inRope1, inRope2, inRope3, inRope4; // for levels w/ multiple
+boolean inAnyRope, bubble;
+boolean inRope1, inRope2; // for levels w/ multiple
 
 final PVector gravity = new PVector(0, 2);
 final float k = 20;
 final float len = 20;
-final float dampen = .989;
+final float dampen = .98;
 
 void draw(){
-  inAnyRope = inRope1 || inRope2 || inRope3 || inRope4;
+  inAnyRope = inRope1 || inRope2;
   if (currentLevel > 0){
     background(bg);
     if(!candy.inMouth() && onScreen){
@@ -38,10 +38,30 @@ void draw(){
   if (currentLevel == 1){
     textSize(20); 
     text("Swipe ->", 150, 200);
-    text("This is Om Nom!", 100, 800);
-    text("He's really hungry.", 100, 820);
-    text("Cut the rope to give him the candy!", 100, 840);
+    text("This is Om Nom!", 100, 700);
+    text("He's really hungry.", 100, 720);
+    text("Cut the rope to give him the candy!", 100, 740);
   }
+  if (currentLevel == 2){
+    text("Use momentum!", 200, 230);
+  }
+  if (currentLevel == 3){
+    text("Cut both ropes in one swipe!", 200, 700);
+  }
+  if (currentLevel == 4){
+    text("Be amazed at the magic portals!", 200, 500);
+    PImage p1 = loadImage("Sprites/portal1.png");
+    PImage p2 = loadImage("Sprites/portal2.png");
+    image(p1, 120, 770, 100, 100);
+    image(p2, 300, 100, 100, 100);
+    if (candy.position.y > 750){candy.position = new PVector(340, 100);}
+  }
+  
+  if (currentLevel == 5){
+    text("And float up in a bubble!", 150, 300);
+    if (candy.position.y > 750){bubble = true;}
+  }
+  
 }
 
 void run() {
@@ -50,7 +70,8 @@ void run() {
     r.stretch();
     r.display();
   }
-  if (!inAnyRope) candy.move(new PVector(0,30));
+  if (!inAnyRope && !bubble) candy.move(new PVector(0,30));
+  if (bubble) {candy.move(new PVector(0, -10));}
   candy.display();
 }
 
@@ -60,7 +81,7 @@ void setup(){
   background(bg);
   sprite = loadImage("Sprites/omnom.png");
   currentLevel = 0; scale = 3;
-  inRope1 = false; inRope2 = false; inRope3 = false; inRope4 = false;
+  inRope1 = false; inRope2 = false;
 }
 
 void loadLevel(int level) {
@@ -70,48 +91,49 @@ void loadLevel(int level) {
   
   if (level == 1) {
       bg = loadImage("Sprites/bg01.png"); bg.resize(540, 960);
-      winPosX = width / 2; winPosY = 900;
+      winPosX = width / 2; winPosY = 800;
       candy = new Candy(width / 2, 200);
       ropes.add(new Rope(new StaticNode(width / 2, 100), candy, 1));
       onScreen = true;
-      inRope1 = true; inRope2 = false; inRope3 = false; inRope4 = false;
+      inRope1 = true; inRope2 = false;
   }
   
   if (level == 2) {
       bg = loadImage("Sprites/bg02.png"); bg.resize(540, 960);
-      winPosX = width / 2; winPosY = 900;
-      candy = new Candy(width / 2, 300);
-      ropes.add(new Rope(new StaticNode(width / 4, 250), candy, 1));
-      ropes.add(new Rope(new StaticNode(3*width / 4, 250), candy, 2));
+      winPosX = width / 2; winPosY = 800;
+      candy = new Candy(width / 2, 200);
+      ropes.add(new Rope(new StaticNode(width / 4, 150), candy, 1));
+      ropes.add(new Rope(new StaticNode(3*width / 4, 150), candy, 2));
       onScreen = true;
-      inRope1 = true; inRope2 = true; inRope3 = false; inRope4 = false;
+      inRope1 = true; inRope2 = true;
   }
   
   if (level == 3) {
       bg = loadImage("Sprites/bg03.png"); bg.resize(540, 960);
-      winPosX = width / 2; winPosY = 900;
-      candy = new Candy(width / 2, 200);
+      winPosX = 2 * width / 5; winPosY = 750;
+      candy = new Candy(width / 2, 300);
       ropes.add(new Rope(new StaticNode(width / 2, 100), candy, 1));
+      ropes.add(new Rope(new StaticNode(5 * width / 7, 200), candy, 2));
       onScreen = true;
-      inRope1 = true; inRope2 = false; inRope3 = false; inRope4 = false;
+      inRope1 = true; inRope2 = true;
   }
   
   if (level == 4) {
       bg = loadImage("Sprites/bg04.png"); bg.resize(540, 960);
-      winPosX = width / 2; winPosY = 900;
-      candy = new Candy(width / 2, 200);
-      ropes.add(new Rope(new StaticNode(width / 2, 100), candy, 2));
+      winPosX = 2 * width / 3; winPosY = 700;
+      candy = new Candy(width / 3, 200);
+      ropes.add(new Rope(new StaticNode(width / 3, 100), candy, 1));
       onScreen = true;
-      inRope1 = true; inRope2 = false; inRope3 = false; inRope4 = false;
+      inRope1 = true; inRope2 = false;
   }
   
   if (level == 5) {
       bg = loadImage("Sprites/bg05.png"); bg.resize(540, 960);
-      winPosX = width / 2; winPosY = 900;
-      candy = new Candy(width / 2, 200);
-      ropes.add(new Rope(new StaticNode(width / 2, 100), candy, 1));
+      winPosX = width / 2; winPosY = 100;
+      candy = new Candy(width / 2, 600);
+      ropes.add(new Rope(new StaticNode(width / 2, 500), candy, 1));
       onScreen = true;
-      inRope1 = true; inRope2 = false; inRope3 = false; inRope4 = false;
+      inRope1 = true; inRope2 = false;
   }
   
   if (level > 5) {
