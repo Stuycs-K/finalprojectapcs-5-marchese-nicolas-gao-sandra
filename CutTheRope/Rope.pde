@@ -3,26 +3,34 @@ public class Rope {
   private ArrayList<Node> nodes;
 
   public float nodeDist;
+  public int ropeID;
   
   public boolean isCut(int pmouseX, int pmouseY, int mouseX, int mouseY) {
     for (int i = 0; i < nodes.size() - 1; i++) {
       Node n1 = nodes.get(i);
       Node n2 = nodes.get(i + 1);
-      if (min(pmouseX, mouseX) < min(n1.getx(), n2.getx()) && max(pmouseX, mouseX) > max(n1.getx(), n2.getx()) && min(pmouseY, mouseY) > min(n1.gety(), n2.gety()) && max(pmouseY, mouseY) < max(n1.gety(), n2.gety())) {
+      if (min(pmouseX, mouseX) < min(n1.getx(), n2.getx()) && max(pmouseX, mouseX) > max(n1.getx(), n2.getx())) {
         cut();
         return true;
       }
     }
     return false;
   }
+  
   public void addNode(Node n) {
     nodes.add(n);
   }
+  
   private void cut() {
     while (nodes.size() > 2) {
       nodes.remove(1);
     }
-    if (nodes.remove(candy)) inRope = false;
+    if (nodes.remove(candy)){
+      if (ropeID == 1) {inRope1 = false;}
+      if (ropeID == 2) {inRope2 = false;}
+      if (ropeID == 3) {inRope3 = false;}
+      if (ropeID == 4) {inRope4 = false;}
+    }
   }
   
   public void stretch() {
@@ -44,7 +52,7 @@ public class Rope {
       }
       
       for (int i = 0; i < nodes.size(); i++) {
-        if (forces.get(i).y < 0){nodes.get(i).move(forces.get(i));}
+        nodes.get(i).move(forces.get(i));
       }
     }
   }
@@ -57,11 +65,12 @@ public class Rope {
     nodes.get(nodes.size() - 1).display();
   }
   
-  public Rope(float x1, float y1, float x2, float y2) {
-    this(new StaticNode(x1, y1), new StaticNode(x2, y2));
+  public Rope(float x1, float y1, float x2, float y2, int ropeID) {
+    this(new StaticNode(x1, y1), new StaticNode(x2, y2), ropeID);
   }
   
-  public Rope(Node n1, Node n2) {
+  public Rope(Node n1, Node n2, int ropeID) {
+    this.ropeID = ropeID;
     int points = (int) (n1.dist(n2) / len);
     int xStep = (int) (n2.getx() - n1.getx()) / points;
     int yStep = (int) (n2.gety() - n1.gety()) / points;
