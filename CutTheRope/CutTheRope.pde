@@ -1,29 +1,35 @@
 PImage sprite;
+PImage bg;
 int winPosX, winPosY, scale;
-int currentLevel;
+int currentLevel, frame, fps;
 ArrayList<Rope> ropes;
 Candy candy;
 ArrayList<PVector> stars;
 boolean onScreen;
 Rope e;
 
-final float g = 0.1;
-final float k = 2;
-final float len = 100;
-// final float dampen = .02;
+final PVector gravity = new PVector(0, 2);
+final float k = 15;
+final float len = 25;
+final float dampen = .989;
 
 void draw(){
-  background(255);
-  if(!candy.inMouth() && onScreen){
-    onScreen = candy.isOnScreen();
-    run();
+  if (frame % fps == 0) {
+    background(bg);
+    if(!candy.inMouth() && onScreen){
+      onScreen = candy.isOnScreen();
+      run();
+    }
+    frame = 0;
   }
+  
   if (!onScreen) {
     lose();
   }
   else {
     win();
   }
+  frame++;
 }
 
 void run() {
@@ -38,11 +44,12 @@ void run() {
 
 void setup(){
   size(540,960); // 9:16 phone aspect ratio
-  background(255);
-  sprite = loadImage("Sprites/omnom.png");
-  scale = 4;
+  fps = 2;
+  
   currentLevel = 1; //start on main screen ?
   loadLevel(currentLevel);
+  sprite = loadImage("Sprites/omnom.png");
+  scale = 4;
 }
 
 void loadLevel(int level) {
@@ -51,10 +58,9 @@ void loadLevel(int level) {
   stars = new ArrayList<PVector>();
   
   if (level == 1) {
-      PImage bg = loadImage("Sprites/bg01.png"); bg.resize(540, 960);
-      background(bg);
+      bg = loadImage("Sprites/bg01.png"); bg.resize(540, 960);
       winPosX = 490; winPosY = 900;
-      candy = new Candy(270, 500);
+      candy = new Candy(200, 200);
       ropes.add(new Rope(new StaticNode(300, 100), candy));
       stars.add(new PVector(10, 0));
       onScreen = true;
@@ -75,5 +81,10 @@ void mouseClicked() {
 }
 
 void mouseDragged() {
-  // isCut(pmouseX, pmouseY, mouseX, mouseY);
+  for (Rope r : ropes) {
+    if (r.isCut(pmouseX, pmouseY, mouseX, mouseY)) {
+      r.cut();
+      break;
+    }
+  }
 }

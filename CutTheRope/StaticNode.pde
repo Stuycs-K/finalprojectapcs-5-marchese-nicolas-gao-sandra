@@ -3,7 +3,7 @@ public class StaticNode extends Node {
   private PImage img;
   
   public StaticNode(PVector pos) {
-    super(100, pos, new PVector(0,0));
+    super(30, pos, new PVector(0,0));
     img = loadImage("Sprites/staticnode_1.png");
   }
   
@@ -19,12 +19,11 @@ public class StaticNode extends Node {
     r.addNode(this);
   }
   
-  public PVector calculateVector(Node other) {
-    return null;
+  public void move(PVector f) {
+    return;
   }
   
   public void display() {
     image(img, getx() - img.width / 3, gety() - img.height / 3, img.width / 1.5, img.height / 1.5);
   }
-  
 }

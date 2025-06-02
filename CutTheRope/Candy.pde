@@ -3,7 +3,7 @@ public class Candy extends Node {
   PImage img;
   
   public Candy(PVector pos) {
-    super(100, pos, new PVector(0,0));
+    super(50, pos, new PVector(0,0));
     img = loadImage("Sprites/candy.png");
   }
   public Candy(float x, float y) {
@@ -23,7 +23,7 @@ public class Candy extends Node {
   }
   
   public void display() {
-    image(img, getx(), gety(), 250 / 6, 258 / 6);
+    image(img, getx() - 250 / 12, gety() - 250 / 12, 250 / 6, 258 / 6);
   }
   
 }

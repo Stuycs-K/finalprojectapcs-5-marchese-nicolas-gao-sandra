@@ -8,7 +8,9 @@ public class Rope {
     for (int i = 0; i < nodes.size() - 1; i++) {
       Node n1 = nodes.get(i);
       Node n2 = nodes.get(i + 1);
-      if (min(pmouseX, mouseX) < min(n1.getx(), n2.getx()) && max(pmouseX, mouseX) > max(n1.getx(), n2.getx()) && min(pmouseY, mouseY) > min(n1.gety(), n2.gety()) && max(pmouseY, mouseY) < max(n1.gety(), n2.gety())) return true;
+      if (min(pmouseX, mouseX) < min(n1.getx(), n2.getx()) && max(pmouseX, mouseX) > max(n1.getx(), n2.getx()) && min(pmouseY, mouseY) > min(n1.gety(), n2.gety()) && max(pmouseY, mouseY) < max(n1.gety(), n2.gety())) {
+        nodes = new ArrayList
+        return true;
     }
     return false;
   }
@@ -20,19 +22,25 @@ public class Rope {
   }
   
   public void stretch() {
-    for (int i = 0; i + 1 < nodes.size(); i++){
-      Node n1 = nodes.get(i);
-      Node n2 = nodes.get(i + 1);
-      
-      // print(n1.getpos());
-      
+    ArrayList<PVector> forces = new ArrayList<PVector>();
+    
+    for (int i = 0; i < nodes.size(); i++) {
+      Node n = nodes.get(i);
+      PVector force;
       try {
-        n1.move(n1.calculateVector(n2));
-      } catch (NullPointerException e) {}
-      
-      try {
-        n2.move(n2.calculateVector(n1));
-      } catch (NullPointerException e) {}
+        force = n.calculateVector(nodes.get(i - 1), nodes.get(i + 1));
+      } catch (IndexOutOfBoundsException e) {
+        try {
+          force = n.calculateVector(nodes.get(i - 1));
+        } catch (IndexOutOfBoundsException f) {
+          force = n.calculateVector(nodes.get(i + 1));
+        }
+      }
+      forces.add(force);
+    }
+    
+    for (int i = 0; i < nodes.size(); i++) {
+      nodes.get(i).move(forces.get(i));
     }
   }
   
@@ -60,5 +68,4 @@ public class Rope {
     }
     nodes.add(n2);
   }
-  
 }
