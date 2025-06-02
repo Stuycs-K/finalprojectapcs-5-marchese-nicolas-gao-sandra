@@ -28,7 +28,6 @@ public class Rope {
   public void stretch() {
     if (nodes.size() > 2) {
       ArrayList<PVector> forces = new ArrayList<PVector>();
-      
       for (int i = 0; i < nodes.size(); i++) {
         Node n = nodes.get(i);
         PVector force;

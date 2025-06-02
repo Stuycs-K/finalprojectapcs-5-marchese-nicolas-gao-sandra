@@ -4,7 +4,7 @@ int winPosX, winPosY, scale;
 int currentLevel;
 ArrayList<Rope> ropes;
 Candy candy;
-ArrayList<PVector> stars;
+// ArrayList<PVector> stars; additional feature
 boolean onScreen, inRope;
 
 final PVector gravity = new PVector(0, 2);
@@ -13,15 +13,24 @@ final float len = 25;
 final float dampen = .989;
 
 void draw(){
-  background(bg);
-  if(!candy.inMouth() && onScreen){
-    onScreen = candy.isOnScreen();
-    run();
+  if (currentLevel > 0){
+    background(bg);
+    if(!candy.inMouth() && onScreen){
+      onScreen = candy.isOnScreen();
+      run();
+    }
+    if (Math.abs(candy.getx()-winPosX) <= 50 && Math.abs(candy.gety()-winPosY) <= 20) {
+      win();
+    } else if (!onScreen) {
+      lose();
+    }
   }
-  if (Math.abs(candy.getx()-winPosX) <= 25 && Math.abs(candy.gety()-winPosY) <= 25) {
-    win();
-  } else if (!onScreen) {
-    lose();
+  else{
+    background(bg);
+    PImage logo = loadImage("Sprites/menulogo.png");
+    image(logo, 0, 0, 540, 300);
+    textSize(50); fill(0);
+    text("Click to start!", 150, 400);
   }
 }
 
@@ -37,8 +46,8 @@ void run() {
 
 void setup(){
   size(540,960); // 9:16 phone aspect ratio
-  currentLevel = 1;
-  loadLevel(currentLevel);
+  currentLevel = 0; bg = loadImage("Sprites/bg00.png"); bg.resize(540, 960);
+  winPosX = 0; winPosY = 0;
   sprite = loadImage("Sprites/omnom.png");
   scale = 3;
 }
@@ -46,14 +55,13 @@ void setup(){
 void loadLevel(int level) {
   
   ropes = new ArrayList<Rope>();
-  stars = new ArrayList<PVector>();
+  // stars = new ArrayList<PVector>();
   
   if (level == 1) {
       bg = loadImage("Sprites/bg01.png"); bg.resize(540, 960);
       winPosX = width / 2; winPosY = 900;
       candy = new Candy(width / 2 - 5, 200);
       ropes.add(new Rope(new StaticNode(width / 2, 100), candy));
-      stars.add(new PVector(10, 0));
       onScreen = true;
       inRope = true;
   }
@@ -63,7 +71,6 @@ void loadLevel(int level) {
       winPosX = width / 2; winPosY = 900;
       candy = new Candy(width / 2, 200);
       ropes.add(new Rope(new StaticNode(width / 2, 100), candy));
-      stars.add(new PVector(10, 0));
       onScreen = true;
       inRope = true;
   }
@@ -73,7 +80,6 @@ void loadLevel(int level) {
       winPosX = width / 2; winPosY = 900;
       candy = new Candy(width / 2, 200);
       ropes.add(new Rope(new StaticNode(width / 2, 100), candy));
-      stars.add(new PVector(10, 0));
       onScreen = true;
       inRope = true;
   }
@@ -83,7 +89,6 @@ void loadLevel(int level) {
       winPosX = width / 2; winPosY = 900;
       candy = new Candy(width / 2, 200);
       ropes.add(new Rope(new StaticNode(width / 2, 100), candy));
-      stars.add(new PVector(10, 0));
       onScreen = true;
       inRope = true;
   }
@@ -93,19 +98,20 @@ void loadLevel(int level) {
       winPosX = width / 2; winPosY = 900;
       candy = new Candy(width / 2, 200);
       ropes.add(new Rope(new StaticNode(width / 2, 100), candy));
-      stars.add(new PVector(10, 0));
       onScreen = true;
       inRope = true;
   }
   
-  if (level >= 5) {
+  if (level > 5) {
       background(0); textSize(50);
+      fill(255);
       text("More levels soon!", 20, 100);
   }
   
 }
 
 void win() {
+  try{Thread.sleep(1000);} catch(Exception e){}
   currentLevel++;
   loadLevel(currentLevel);
 }
@@ -115,7 +121,7 @@ void lose() {
 }
 
 void mouseClicked() {
-  return;
+  if (currentLevel == 0){currentLevel++; loadLevel(1);}
 }
 
 void mouseDragged() {
