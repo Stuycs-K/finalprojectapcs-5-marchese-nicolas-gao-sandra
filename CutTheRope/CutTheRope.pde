@@ -1,12 +1,11 @@
 PImage sprite;
 PImage bg;
 int winPosX, winPosY, scale;
-int currentLevel, frame, fps;
+int currentLevel;
 ArrayList<Rope> ropes;
 Candy candy;
 ArrayList<PVector> stars;
-boolean onScreen;
-Rope e;
+boolean onScreen, inRope;
 
 final PVector gravity = new PVector(0, 2);
 final float k = 15;
@@ -14,22 +13,17 @@ final float len = 25;
 final float dampen = .989;
 
 void draw(){
-  if (frame % fps == 0) {
-    background(bg);
-    if(!candy.inMouth() && onScreen){
-      onScreen = candy.isOnScreen();
-      run();
-    }
-    frame = 0;
+  background(bg);
+  if(!candy.inMouth() && onScreen){
+    onScreen = candy.isOnScreen();
+    run();
   }
   
-  if (!onScreen) {
+  if (candy.getx() == winPosX && candy.gety() == winPosY) {
+    win();
+  } else if (!onScreen) {
     lose();
   }
-  else {
-    win();
-  }
-  frame++;
 }
 
 void run() {
@@ -38,13 +32,12 @@ void run() {
     r.stretch();
     r.display();
   }
-  // candy.move(new PVector(0,0));
-  // candy.display();
+  if (!inRope) candy.move(new PVector(0,50));
+  candy.display();
 }
 
 void setup(){
   size(540,960); // 9:16 phone aspect ratio
-  fps = 2;
   
   currentLevel = 1; //start on main screen ?
   loadLevel(currentLevel);
@@ -59,20 +52,23 @@ void loadLevel(int level) {
   
   if (level == 1) {
       bg = loadImage("Sprites/bg01.png"); bg.resize(540, 960);
-      winPosX = 490; winPosY = 900;
-      candy = new Candy(200, 200);
-      ropes.add(new Rope(new StaticNode(300, 100), candy));
+      winPosX = width / 2; winPosY = 900;
+      candy = new Candy(width / 2, 200);
+      ropes.add(new Rope(new StaticNode(width / 2, 100), candy));
       stars.add(new PVector(10, 0));
       onScreen = true;
+      inRope = true;
   }
   
 }
 
 void win() {
+  background(255);
   return;
 }
 
 void lose() {
+  background(0);
   return;
 }
 
@@ -82,9 +78,6 @@ void mouseClicked() {
 
 void mouseDragged() {
   for (Rope r : ropes) {
-    if (r.isCut(pmouseX, pmouseY, mouseX, mouseY)) {
-      r.cut();
-      break;
-    }
+    r.isCut(pmouseX, pmouseY, mouseX, mouseY);
   }
 }
