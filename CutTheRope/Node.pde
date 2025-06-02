@@ -1,4 +1,5 @@
 public abstract class Node {
+  
   private int mass;
   private PVector position, velocity, acceleration;
   
@@ -18,6 +19,9 @@ public abstract class Node {
   public PVector getpos() {
     return position;
   }
+  public PVector getvel() {
+    return velocity;
+  }
   
   public float getx() {
     return position.x;
@@ -27,27 +31,25 @@ public abstract class Node {
     return position.y;
   }
   
-  public PVector getacc() {
-    return acceleration;
-  }
-  
-  public PVector calculateVector(Node n1, Node n2) {
-    return null; // placeholder
-  }
-  
-  public void move() {
-    velocity.add(acceleration);
+  public PVector calculateVector(Node other){
+    PVector force = PVector.sub(getpos(), other.getpos());
+    float d = len - force.mag();
+    force.setMag(d * k); // spring constant scaling factor
     
-  }  
+    return force;
+  }
   
-  public void attract(Node other, float nodeDist){
-    PVector force = PVector.sub(other.getpos(), getpos());
-    float d = force.mag() - nodeDist;
-    force.setMag(d * 50); // spring constant scaling factor
-    getacc().add(force.div(getmass()));
+  public void move(PVector f) {
+    acceleration.add(f.div(getmass()));
+    acceleration.add(new PVector(0, g));
+    
+    velocity.add(acceleration);
+    position.add(velocity);
+    acceleration = new PVector(0, 0);
   }
   
   public float dist(Node other) {
     return getpos().dist(other.getpos());
   }
+  
 }
