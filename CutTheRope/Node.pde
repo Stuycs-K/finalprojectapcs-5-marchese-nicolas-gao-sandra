@@ -42,14 +42,15 @@ public abstract class Node {
     PVector f1 = calculateVector(n1);
     PVector f2 = calculateVector(n2);
     
-    return PVector.add(f1, f2).add(gravity);
+    return PVector.add(f1, f2);
   }
   
   public void move(PVector f) {
     acceleration.add(f.div(getmass()));
+    acceleration.add(gravity);
     // acceleration.mult(dampen);
     
-    velocity.add(acceleration);
+    velocity.add(acceleration).mult(dampen);
     position.add(velocity);
     acceleration = new PVector(0, 0);
   }

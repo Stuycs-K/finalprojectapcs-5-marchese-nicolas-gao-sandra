@@ -1,6 +1,6 @@
 public class RopeNode extends Node {
   public RopeNode (PVector pos, PVector vel) {
-    super(5, pos, vel);
+    super(25, pos, vel);
   }
   
   public RopeNode (float x, float y) {
@@ -11,5 +11,4 @@ public class RopeNode extends Node {
     circle(getx(), gety(), 2);
     return;
   }
-  
 }
