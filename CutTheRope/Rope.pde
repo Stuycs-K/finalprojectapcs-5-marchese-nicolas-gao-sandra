@@ -9,44 +9,50 @@ public class Rope {
       Node n1 = nodes.get(i);
       Node n2 = nodes.get(i + 1);
       if (min(pmouseX, mouseX) < min(n1.getx(), n2.getx()) && max(pmouseX, mouseX) > max(n1.getx(), n2.getx()) && min(pmouseY, mouseY) > min(n1.gety(), n2.gety()) && max(pmouseY, mouseY) < max(n1.gety(), n2.gety())) {
-        nodes = new ArrayList
+        cut();
         return true;
+      }
     }
     return false;
   }
   public void addNode(Node n) {
     nodes.add(n);
   }
-  public void removeNode() {
-    
+  private void cut() {
+    while (nodes.size() > 2) {
+      nodes.remove(1);
+    }
+    if (nodes.remove(candy)) inRope = false;
   }
   
   public void stretch() {
-    ArrayList<PVector> forces = new ArrayList<PVector>();
-    
-    for (int i = 0; i < nodes.size(); i++) {
-      Node n = nodes.get(i);
-      PVector force;
-      try {
-        force = n.calculateVector(nodes.get(i - 1), nodes.get(i + 1));
-      } catch (IndexOutOfBoundsException e) {
+    if (nodes.size() > 2) {
+      ArrayList<PVector> forces = new ArrayList<PVector>();
+      
+      for (int i = 0; i < nodes.size(); i++) {
+        Node n = nodes.get(i);
+        PVector force;
         try {
-          force = n.calculateVector(nodes.get(i - 1));
-        } catch (IndexOutOfBoundsException f) {
-          force = n.calculateVector(nodes.get(i + 1));
+          force = n.calculateVector(nodes.get(i - 1), nodes.get(i + 1));
+        } catch (IndexOutOfBoundsException e) {
+          try {
+            force = n.calculateVector(nodes.get(i - 1));
+          } catch (IndexOutOfBoundsException f) {
+            force = n.calculateVector(nodes.get(i + 1));
+          }
         }
+        forces.add(force);
       }
-      forces.add(force);
-    }
-    
-    for (int i = 0; i < nodes.size(); i++) {
-      nodes.get(i).move(forces.get(i));
+      
+      for (int i = 0; i < nodes.size(); i++) {
+        nodes.get(i).move(forces.get(i));
+      }
     }
   }
   
   public void display() {
     for(int i = 0; i + 1 < nodes.size(); i++) {
-      nodes.get(i).display();
+      if (nodes.get(i) != candy) nodes.get(i).display();
       line(nodes.get(i).getx(), nodes.get(i).gety(), nodes.get(i + 1).getx(), nodes.get(i + 1).gety());
     }
     nodes.get(nodes.size() - 1).display();
