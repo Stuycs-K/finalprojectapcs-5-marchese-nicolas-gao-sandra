@@ -19,18 +19,25 @@ void draw(){
       onScreen = candy.isOnScreen();
       run();
     }
-    if (Math.abs(candy.getx()-winPosX) <= 50 && Math.abs(candy.gety()-winPosY) <= 20) {
+    if (Math.abs(candy.getx()-winPosX) <= 50 && Math.abs(candy.gety()-winPosY) <= 50) {
       win();
     } else if (!onScreen) {
       lose();
     }
   }
-  else{
+  if (currentLevel == 0){
     background(bg);
     PImage logo = loadImage("Sprites/menulogo.png");
     image(logo, 0, 0, 540, 300);
     textSize(50); fill(0);
     text("Click to start!", 150, 400);
+  }
+  if (currentLevel == 1){
+    textSize(20); 
+    text("Swipe ->", 150, 200);
+    text("This is Om Nom!", 100, 800);
+    text("He's really hungry.", 100, 820);
+    text("Cut the rope to give him the candy!", 100, 840);
   }
 }
 
@@ -40,16 +47,16 @@ void run() {
     r.stretch();
     r.display();
   }
-  if (!inRope) candy.move(new PVector(0,50));
+  if (!inRope) candy.move(new PVector(0,30));
   candy.display();
 }
 
 void setup(){
   size(540,960); // 9:16 phone aspect ratio
-  currentLevel = 0; bg = loadImage("Sprites/bg00.png"); bg.resize(540, 960);
+  bg = loadImage("Sprites/bg00.png"); bg.resize(540, 960);
   winPosX = 0; winPosY = 0;
   sprite = loadImage("Sprites/omnom.png");
-  scale = 3;
+  currentLevel = 0; scale = 3;
 }
 
 void loadLevel(int level) {
@@ -60,7 +67,7 @@ void loadLevel(int level) {
   if (level == 1) {
       bg = loadImage("Sprites/bg01.png"); bg.resize(540, 960);
       winPosX = width / 2; winPosY = 900;
-      candy = new Candy(width / 2 - 5, 200);
+      candy = new Candy(width / 2, 200);
       ropes.add(new Rope(new StaticNode(width / 2, 100), candy));
       onScreen = true;
       inRope = true;
@@ -69,8 +76,8 @@ void loadLevel(int level) {
   if (level == 2) {
       bg = loadImage("Sprites/bg02.png"); bg.resize(540, 960);
       winPosX = width / 2; winPosY = 900;
-      candy = new Candy(width / 2, 200);
-      ropes.add(new Rope(new StaticNode(width / 2, 100), candy));
+      candy = new Candy(width / 4 - 1, 150);
+      ropes.add(new Rope(new StaticNode(width / 4, 100), candy));
       onScreen = true;
       inRope = true;
   }
@@ -111,7 +118,7 @@ void loadLevel(int level) {
 }
 
 void win() {
-  try{Thread.sleep(1000);} catch(Exception e){}
+  try{text("Win", 100, 500); Thread.sleep(100);} catch(Exception e){}
   currentLevel++;
   loadLevel(currentLevel);
 }
@@ -121,7 +128,7 @@ void lose() {
 }
 
 void mouseClicked() {
-  if (currentLevel == 0){currentLevel++; loadLevel(1);}
+  if (currentLevel == 0){currentLevel++; loadLevel(currentLevel);}
 }
 
 void mouseDragged() {

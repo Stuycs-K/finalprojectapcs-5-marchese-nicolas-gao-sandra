@@ -44,7 +44,7 @@ public class Rope {
       }
       
       for (int i = 0; i < nodes.size(); i++) {
-        nodes.get(i).move(forces.get(i));
+        if (forces.get(i).y < 0){nodes.get(i).move(forces.get(i));}
       }
     }
   }
