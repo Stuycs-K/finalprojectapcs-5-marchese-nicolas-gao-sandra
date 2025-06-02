@@ -7,10 +7,10 @@ ArrayList<PVector> stars;
 boolean onScreen;
 Rope e;
 
-final float g = 0.1;
-final float k = 2;
-final float len = 100;
-// final float dampen = .02;
+final PVector gravity = new PVector(0,0);
+final float k = 1;
+final float len = 50;
+// final float dampen = .1;
 
 void draw(){
   background(255);
@@ -55,7 +55,7 @@ void loadLevel(int level) {
       background(bg);
       winPosX = 490; winPosY = 900;
       candy = new Candy(270, 500);
-      ropes.add(new Rope(new StaticNode(300, 100), candy));
+      ropes.add(new Rope(300, 100, 100, 100));
       stars.add(new PVector(10, 0));
       onScreen = true;
   }

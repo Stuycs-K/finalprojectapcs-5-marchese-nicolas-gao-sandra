@@ -20,19 +20,20 @@ public class Rope {
   }
   
   public void stretch() {
-    for (int i = 0; i + 1 < nodes.size(); i++){
-      Node n1 = nodes.get(i);
-      Node n2 = nodes.get(i + 1);
-      
-      // print(n1.getpos());
-      
+    for (int i = 0; i < nodes.size(); i++) {
+      Node n = nodes.get(i);
+      PVector force;
       try {
-        n1.move(n1.calculateVector(n2));
-      } catch (NullPointerException e) {}
+        force = n.calculateVector(nodes.get(i - 1), nodes.get(i + 1));
+      } catch (IndexOutOfBoundsException e) {
+        try {
+          force = n.calculateVector(nodes.get(i - 1));
+        } catch (IndexOutOfBoundsException f) {
+          force = n.calculateVector(nodes.get(i + 1));
+        }
+      }
       
-      try {
-        n2.move(n2.calculateVector(n1));
-      } catch (NullPointerException e) {}
+      n.move(force);
     }
   }
   
