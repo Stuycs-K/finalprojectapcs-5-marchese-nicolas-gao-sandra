@@ -7,8 +7,8 @@ Candy candy;
 ArrayList<PVector> stars;
 boolean onScreen, inRope;
 
-final PVector gravity = new PVector(0, 2);
-final float k = 15;
+final PVector gravity = new PVector(0, 0.1);
+final float k = 50;
 final float len = 25;
 final float dampen = .989;
 
@@ -53,7 +53,7 @@ void loadLevel(int level) {
   if (level == 1) {
       bg = loadImage("Sprites/bg01.png"); bg.resize(540, 960);
       winPosX = width / 2; winPosY = 900;
-      candy = new Candy(width / 2, 200);
+      candy = new Candy(width / 2, 300);
       ropes.add(new Rope(new StaticNode(width / 2, 100), candy));
       stars.add(new PVector(10, 0));
       onScreen = true;
