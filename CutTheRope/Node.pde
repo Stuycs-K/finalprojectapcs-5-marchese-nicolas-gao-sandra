@@ -50,7 +50,7 @@ public abstract class Node {
     acceleration.add(gravity);
     // acceleration.mult(dampen);
     
-    velocity.add(acceleration).mult(dampen);
+    velocity.add(acceleration);
     position.add(velocity);
     acceleration = new PVector(0, 0);
   }

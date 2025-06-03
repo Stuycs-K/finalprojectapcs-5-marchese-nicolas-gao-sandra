@@ -9,10 +9,10 @@ boolean onScreen;
 boolean inAnyRope, bubble;
 boolean inRope1, inRope2; // for levels w/ multiple
 
-final PVector gravity = new PVector(0, 2);
-final float k = 20;
-final float len = 20;
-final float dampen = .98;
+final PVector gravity = new PVector(0, 0.1);
+final float k = 50;
+final float len = 25;
+final float dampen = .989;
 
 void draw(){
   inAnyRope = inRope1 || inRope2;
@@ -94,6 +94,7 @@ void loadLevel(int level) {
       winPosX = width / 2; winPosY = 800;
       candy = new Candy(width / 2, 200);
       ropes.add(new Rope(new StaticNode(width / 2, 100), candy, 1));
+      // stars.add(new PVector(10, 0));
       onScreen = true;
       inRope1 = true; inRope2 = false;
   }
