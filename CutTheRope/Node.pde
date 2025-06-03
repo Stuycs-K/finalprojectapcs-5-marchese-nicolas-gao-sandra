@@ -1,7 +1,7 @@
 public abstract class Node {
   
   private int mass;
-  private PVector position, velocity, acceleration;
+  public PVector position, velocity, acceleration;
   
   public Node (int m, PVector pos, PVector vel) {
     mass = m;
@@ -50,7 +50,7 @@ public abstract class Node {
     acceleration.add(gravity);
     // acceleration.mult(dampen);
     
-    velocity.add(acceleration).mult(dampen);
+    velocity.add(acceleration);
     position.add(velocity);
     acceleration = new PVector(0, 0);
   }
