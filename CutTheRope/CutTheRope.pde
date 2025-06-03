@@ -10,7 +10,7 @@ boolean inAnyRope, bubble;
 boolean inRope1, inRope2; // for levels w/ multiple
 
 final PVector gravity = new PVector(0, 0.1);
-final float k = 50;
+final float k = 10;
 final float len = 25;
 final float dampen = .989;
 
