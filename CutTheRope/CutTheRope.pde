@@ -35,7 +35,6 @@ void draw(){
     image(logo, 0, 0, 540, 300);
     textSize(50); fill(0);
     text("Click to start!", 150, 400);
-    textSize(20); 
   }
   if (currentLevel == 1){
     text("Swipe ->", 150, 200);
@@ -163,7 +162,7 @@ void mouseClicked() {
 void keyPressed() { // shortcut
   if (key == 'd'){devMode = true;}
   else if (!Character.isDigit(key)){devMode = false;}
-  if (key == '1' && devMode){currentLevel = 2; loadLevel(currentLevel);}
+  if (key == '1' && devMode){currentLevel = 1; loadLevel(currentLevel);}
   if (key == '2' && devMode){currentLevel = 2; loadLevel(currentLevel);}
   if (key == '3' && devMode){currentLevel = 3; loadLevel(currentLevel);}
   if (key == '4' && devMode){currentLevel = 4; loadLevel(currentLevel);}
