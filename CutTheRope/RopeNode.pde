@@ -1,4 +1,5 @@
 public class RopeNode extends Node {
+  
   public RopeNode (PVector pos, PVector vel) {
     super(25, pos, vel);
   }
@@ -11,4 +12,5 @@ public class RopeNode extends Node {
     circle(getx(), gety(), 2);
     return;
   }
+  
 }

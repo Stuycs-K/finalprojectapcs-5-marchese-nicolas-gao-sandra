@@ -22,4 +22,5 @@ public class StaticNode extends Node {
   public void display() {
     image(img, getx() - img.width / 3, gety() - img.height / 3, img.width / 1.5, img.height / 1.5);
   }
+  
 }
