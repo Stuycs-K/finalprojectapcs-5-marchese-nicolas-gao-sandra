@@ -59,7 +59,7 @@ void draw(){
   
   if (currentLevel == 5){
     text("And float up in a bubble!", 150, 300);
-    if (candy.position.y > 750){bubble = true;}
+    bubble = true;
   }
   
 }
@@ -148,6 +148,7 @@ void loadLevel(int level) {
 void win() {
   try{text("Win", 100, 500); Thread.sleep(100);} catch(Exception e){}
   currentLevel++;
+  loadLevel(currentLevel);
   loadLevel(currentLevel);
 }
 
