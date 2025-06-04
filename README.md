@@ -6,3 +6,9 @@ Cut the Rope by Chillingo (2010)
 Enjoy this relaxing puzzle game / physics simulation!
 
 Clean visuals, fun and challenging levels.
+
+# Controls
+
+* Swipe to cut ropes
+
+* That's it!
