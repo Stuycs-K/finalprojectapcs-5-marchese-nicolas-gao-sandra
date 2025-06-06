@@ -1,12 +1,15 @@
 public class Candy extends Node {
-  PImage img;
   
-  public Candy(PVector pos) {
-    super(0, pos, new PVector(0,0));
+  PImage img;
+  boolean onRope;
+  
+  public Candy(PVector pos, boolean status) {
+    super(25, pos, new PVector(0,0));
     img = loadImage("Sprites/candy.png");
+    onRope = status;
   }
-  public Candy(float x, float y) {
-    this(new PVector(x,y));
+  public Candy(float x, float y, boolean status) {
+    this(new PVector(x,y), status);
   }
   
   public boolean inMouth() {
@@ -17,15 +20,21 @@ public class Candy extends Node {
     return !(getx() < 0 || getx() > width || gety() < 0 || gety() > height);
   }
   
-  public void attract(Node other, float ropeDist){}// placeholder
-  
   public void addTo(Rope r) {
     r.addNode(this);
+    setStatus(true);
   }
-  public void bounce() {
-    
+  
+  public void setStatus(boolean status) {
+    onRope = status;
   }
+  
+  public boolean getStatus() {
+    return onRope;
+  }
+  
   public void display() {
-    image(img, getx(), gety(), 250 / 6, 258 / 6);
+    image(img, getx() - 250 / 12, gety() - 250 / 12, 250 / 6, 258 / 6);
   }
+  
 }

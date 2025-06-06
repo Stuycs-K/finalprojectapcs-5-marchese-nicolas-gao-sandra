@@ -21,3 +21,18 @@ Added proposals, renamed this dev log.
 * Add attract method for Ropes between RopeNodes
 * Fix errors in class implementations
 * Small bugfixes in code
+
+### 2025-05-30 (Physics)
+* Finish rope physics study before implementation
+* Fix small bugs in various methods including draw()
+* Add background
+
+### 2025-06-02 (Finish MVP)
+* Add five basic levels showcasing basic mechanics
+* Tidy up gameplay experience, e.g. added text to show player what to do
+* Trying to figure out how rope physics can be implemented well
+
+### 2025-06-03 (Developer shortcuts)
+* Add developer shortcuts to make showcasing the game easier
+* Implement key presses to skip to a certain level
+* Document changes to game/process in readme
