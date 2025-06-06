@@ -9,8 +9,8 @@ boolean onScreen, devMode;
 boolean inAnyRope, bubble;
 boolean inRope1, inRope2; // for levels w/ multiple
 
-final PVector gravity = new PVector(0, 10);
-final float k = 10;
+final PVector gravity = new PVector(0, 0.1);
+final float k = 1;
 final float len = 20;
 final float dampen = .989;
 
@@ -43,10 +43,10 @@ void draw(){
     text("Cut the rope to give him the candy!", 100, 740);
   }
   if (currentLevel == 2){
-    text("Use momentum!", 200, 230);
+    text("Cut both ropes in one swipe!", 200, 700);
   }
   if (currentLevel == 3){
-    text("Cut both ropes in one swipe!", 200, 700);
+    text("Use momentum!", 200, 230);
   }
   if (currentLevel == 4){
     text("Be amazed at the magic portals!", 200, 500);
@@ -102,7 +102,7 @@ void loadLevel(int level) {
   if (level == 2) {
       bg = loadImage("Sprites/bg02.png"); bg.resize(540, 960);
       winPosX = width / 2; winPosY = 800;
-      candy = new Candy(width / 2, 200, true);
+      candy = new Candy(width / 2, 150, true);
       ropes.add(new Rope(new StaticNode(width / 4, 150), candy, 1));
       ropes.add(new Rope(new StaticNode(3*width / 4, 150), candy, 2));
       onScreen = true;
