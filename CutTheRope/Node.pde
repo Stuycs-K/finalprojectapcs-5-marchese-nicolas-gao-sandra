@@ -34,7 +34,11 @@ public abstract class Node {
   public PVector calculateVector(Node other){
     PVector force = PVector.sub(getpos(), other.getpos());
     float d = len - force.mag();
-    force.setMag(d * k); // spring constant scaling factor
+    if (d > 0) {
+      force = gravity.copy().mult(-1);
+    } else {
+      force.setMag(d * k); // spring constant scaling factor
+    }
     
     return force;
   }
