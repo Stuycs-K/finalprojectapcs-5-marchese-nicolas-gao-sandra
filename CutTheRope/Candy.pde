@@ -8,6 +8,7 @@ public class Candy extends Node {
     img = loadImage("Sprites/candy.png");
     onRope = status;
   }
+  
   public Candy(float x, float y, boolean status) {
     this(new PVector(x,y), status);
   }

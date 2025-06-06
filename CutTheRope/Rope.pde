@@ -9,7 +9,7 @@ public class Rope {
     for (int i = 0; i < nodes.size() - 1; i++) {
       Node n1 = nodes.get(i);
       Node n2 = nodes.get(i + 1);
-      if (min(pmouseX, mouseX) < min(n1.getx(), n2.getx()) && max(pmouseX, mouseX) > max(n1.getx(), n2.getx())) {
+      if (min(pmouseX, mouseX) < min(n1.getx(), n2.getx()) + 20 && max(pmouseX, mouseX) > max(n1.getx(), n2.getx()) - 20 && min(pmouseY, mouseY) < min(n1.gety(), n2.gety()) + 20 && max(pmouseY, mouseY) > max(n1.gety(), n2.gety()) - 20) {
         cut();
         return true;
       }
