@@ -28,6 +28,7 @@ public class Rope {
     if (nodes.remove(candy)){
       if (ropeID == 1) {inRope1 = false;}
       if (ropeID == 2) {inRope2 = false;}
+      candy.setStatus(false);
     }
   }
   
@@ -46,6 +47,7 @@ public class Rope {
             force = n.calculateVector(nodes.get(i + 1));
           }
         }
+        print(force); //<>//
         forces.add(force);
       }
       
