@@ -8,6 +8,7 @@ public class Candy extends Node {
     img = loadImage("Sprites/candy.png");
     onRope = status;
   }
+  
   public Candy(float x, float y, boolean status) {
     this(new PVector(x,y), status);
   }
@@ -34,7 +35,9 @@ public class Candy extends Node {
   }
   
   public void display() {
+    PImage b = loadImage("Sprites/bubbles.png");
     image(img, getx() - 250 / 12, gety() - 250 / 12, 250 / 6, 258 / 6);
+    if (bubble) {image(b, getx() - 250 / 9, gety() - 250 / 9, 55, 55);}
   }
   
 }

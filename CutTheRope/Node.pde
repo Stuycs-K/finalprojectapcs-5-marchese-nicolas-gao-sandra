@@ -42,6 +42,7 @@ public abstract class Node {
     
     return force;
   }
+  
   public PVector calculateVector(Node n1, Node n2){
     PVector f1 = calculateVector(n1);
     PVector f2 = calculateVector(n2);
