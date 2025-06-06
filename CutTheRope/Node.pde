@@ -33,8 +33,8 @@ public abstract class Node {
   
   public PVector calculateVector(Node other){
     PVector force = PVector.sub(other.getpos(), getpos());
-    //float d = len - force.mag();
-    //force.setMag(d * k); // spring constant scaling factor
+    float d = len - force.mag();
+    force.setMag(d * k * -1); // spring constant scaling factor
     
     return force;
   }
@@ -46,12 +46,12 @@ public abstract class Node {
   }
   
   public void move(PVector f) {
-    acceleration.add(f.div(getmass()));
+    acceleration.add(f.div(getmass())).mult(dampen);
     acceleration.add(gravity);
     // acceleration.mult(dampen);
     
     velocity.add(acceleration);
-    position.add(velocity).setMag(len).mult(dampen);
+    position.add(velocity);
     
     acceleration = new PVector(0, 0);
   }
