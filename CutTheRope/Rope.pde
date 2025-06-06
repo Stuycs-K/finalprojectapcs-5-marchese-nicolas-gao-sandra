@@ -47,7 +47,6 @@ public class Rope {
             force = n.calculateVector(nodes.get(i + 1));
           }
         }
-        print(force); //<>//
         forces.add(force);
       }
       
