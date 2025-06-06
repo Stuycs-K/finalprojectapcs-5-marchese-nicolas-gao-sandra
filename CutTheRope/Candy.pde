@@ -34,7 +34,9 @@ public class Candy extends Node {
   }
   
   public void display() {
+    PImage b = loadImage("Sprites/bubbles.png");
     image(img, getx() - 250 / 12, gety() - 250 / 12, 250 / 6, 258 / 6);
+    image(b, getx() - 250 / 9, gety() - 250 / 9, 55, 55);
   }
   
 }
