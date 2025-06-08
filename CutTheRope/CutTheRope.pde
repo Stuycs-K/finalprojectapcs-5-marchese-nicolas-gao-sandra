@@ -1,4 +1,4 @@
-PImage sprite;
+PImage sprite, support;
 PImage bg;
 int winPosX, winPosY, scale;
 int currentLevel;
@@ -15,6 +15,13 @@ final float len = 25;
 final float dampen = .95;
 
 void draw(){
+  if (currentLevel > 5) {
+      background(0); textSize(50);
+      fill(255);
+      text("More levels soon!", 20, 100);
+      return;
+  }
+  
   inAnyRope = inRope1 || inRope2;
   textSize(20); 
   if (currentLevel > 0){
@@ -64,7 +71,10 @@ void draw(){
 }
 
 void run() {
-  image(sprite, winPosX - 250 / scale / 2, winPosY - 258 / scale / 2, 250 / scale, 258 / scale); // calculates upper left corner + scales image down
+  try {
+    image(support, winPosX - support.width / 2, winPosY - sprite.height / 2);
+  } catch (NullPointerException e) {}
+  image(sprite, winPosX - sprite.width / 2, winPosY - sprite.width / 2); // calculates upper left corner + scales image down
   for (Rope r : ropes) {
     r.stretch();
     r.display();
@@ -78,8 +88,8 @@ void setup(){
   size(540,960); // 9:16 phone aspect ratio
   bg = loadImage("Sprites/bg00.png"); bg.resize(540, 960);
   background(bg);
-  sprite = loadImage("Sprites/omnom.png");
   currentLevel = 0; scale = 3; onScreen = false; devMode = false;
+  sprite = loadImage("Sprites/omnom.png"); sprite.resize(83, 83);
   inRope1 = false; inRope2 = false;
 }
 
@@ -87,10 +97,11 @@ void loadLevel(int level) {
   
   ropes = new ArrayList<Rope>();
   // stars = new ArrayList<PVector>();
-  
+  if (level > 0) support = loadImage("Sprites/char_support_0" + currentLevel + "_hd.png"); 
   if (level == 1) {
       bg = loadImage("Sprites/bg01.png"); bg.resize(540, 960);
       winPosX = width / 2; winPosY = 800;
+      support.resize(140, 160);
       candy = new Candy(width / 2, 200, true);
       ropes.add(new Rope(new StaticNode(width / 2, 100), candy, 1));
       // stars.add(new PVector(10, 0));
@@ -102,6 +113,7 @@ void loadLevel(int level) {
   if (level == 2) {
       bg = loadImage("Sprites/bg02.png"); bg.resize(540, 960);
       winPosX = width / 2; winPosY = 800;
+      support.resize(150, 113);
       candy = new Candy(width / 2, 150, true);
       ropes.add(new Rope(new StaticNode(width / 4, 150), candy, 1));
       ropes.add(new Rope(new StaticNode(3*width / 4, 150), candy, 2));
@@ -113,6 +125,7 @@ void loadLevel(int level) {
   if (level == 3) {
       bg = loadImage("Sprites/bg03.png"); bg.resize(540, 960);
       winPosX = 2 * width / 5; winPosY = 750;
+      support.resize(150,115);
       candy = new Candy(width / 2, 300, true);
       ropes.add(new Rope(new StaticNode(width / 2, 100), candy, 1));
       ropes.add(new Rope(new StaticNode(5 * width / 7, 200), candy, 2));
@@ -124,6 +137,7 @@ void loadLevel(int level) {
   if (level == 4) {
       bg = loadImage("Sprites/bg04.png"); bg.resize(540, 960);
       winPosX = 2 * width / 3; winPosY = 700;
+      support.resize(180, 110);
       candy = new Candy(width / 3, 200, true);
       ropes.add(new Rope(new StaticNode(width / 3, 100), candy, 1));
       onScreen = true;
@@ -134,6 +148,7 @@ void loadLevel(int level) {
   if (level == 5) {
       bg = loadImage("Sprites/bg05.png"); bg.resize(540, 960);
       winPosX = width / 2; winPosY = 100;
+      support.resize(170, 180);
       candy = new Candy(width / 2, 600, true);
       ropes.add(new Rope(new StaticNode(width / 2, 500), candy, 1));
       onScreen = true;
@@ -141,11 +156,11 @@ void loadLevel(int level) {
       bubble = true;
   }
   
-  if (level > 5) {
-      background(0); textSize(50);
-      fill(255);
-      text("More levels soon!", 20, 100);
-  }
+  //if (level > 5) {
+  //    background(0); textSize(50);
+  //    fill(255);
+  //    text("More levels soon!", 20, 100);
+  //}
   
 }
 
