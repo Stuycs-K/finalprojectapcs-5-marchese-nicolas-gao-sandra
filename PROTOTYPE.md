@@ -26,27 +26,27 @@ optional*
 
 05-21 prototype due
 
-- [ ] uml diagrams
+- [x] uml diagrams
 
 05-23 finalize string mechanics
 
-- [ ] string tension
+- [x] string tension
 
-- [ ] interaction with candy
+- [x] interaction with candy
 
-  - [ ] candy physics after cutting rope
+  - [x] candy physics after cutting rope
 
-- [ ] swinging mechanics
+- [x] swinging mechanics
 
-  - [ ] nodes
+  - [x] nodes
 
-  - [ ] trajectories
+  - [x] trajectories
 
-- [ ] swipe to cut rope
+- [x] swipe to cut rope
 
 05-26 level designs
 
-- [ ] character interactions
+- [x] character interactions
 
 - [ ] stars
 
@@ -54,6 +54,6 @@ optional*
 
 05-30 playtesting, stylization, finish debugging
 
-- [ ] home screen*
+- [x] home screen*
 
 06-02 project due
