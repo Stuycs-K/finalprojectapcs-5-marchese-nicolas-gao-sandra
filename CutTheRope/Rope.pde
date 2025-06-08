@@ -9,7 +9,7 @@ public class Rope {
     for (int i = 0; i < nodes.size() - 1; i++) {
       Node n1 = nodes.get(i);
       Node n2 = nodes.get(i + 1);
-      if (min(pmouseX, mouseX) < min(n1.getx(), n2.getx()) + 20 && max(pmouseX, mouseX) > max(n1.getx(), n2.getx()) - 20 && min(pmouseY, mouseY) < min(n1.gety(), n2.gety()) + 20 && max(pmouseY, mouseY) > max(n1.gety(), n2.gety()) - 20) {
+      if (min(pmouseX, mouseX) < min(n1.getx(), n2.getx()) + 30 && max(pmouseX, mouseX) > max(n1.getx(), n2.getx()) - 30 && min(pmouseY, mouseY) < min(n1.gety(), n2.gety()) + 30 && max(pmouseY, mouseY) > max(n1.gety(), n2.gety()) - 30) {
         cut();
         return true;
       }
@@ -71,14 +71,14 @@ public class Rope {
   
   public Rope(Node n1, Node n2, int ropeID) {
     this.ropeID = ropeID;
-    int points = (int) (n1.dist(n2) / len);
-    int xStep = (int) (n2.getx() - n1.getx()) / points;
-    int yStep = (int) (n2.gety() - n1.gety()) / points;
+    int points = (int) n1.dist(n2) / (int) len;
+    float xStep = (n2.getx() - n1.getx()) / points;
+    float yStep = (n2.gety() - n1.gety()) / points;
     nodeDist = (float)Math.sqrt(xStep*xStep + yStep*yStep);
     nodes = new ArrayList<Node>();
     nodes.add(n1);
     for (int i = 0; i < points; i++) {
-      nodes.add(new RopeNode(n1.getx() + (i + 1) * xStep, n1.gety() + (i + 1) * yStep));
+      nodes.add(new RopeNode(n1.getx() + ((i + 1) * xStep), n1.gety() + ((i + 1) * yStep)));
     }
     nodes.add(n2);
   }

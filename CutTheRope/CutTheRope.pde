@@ -9,10 +9,10 @@ boolean onScreen, devMode;
 boolean inAnyRope, bubble;
 boolean inRope1, inRope2; // for levels w/ multiple
 
-final PVector gravity = new PVector(0, 0.1);
-final float k = 5;
-final float len = 20;
-final float dampen = .989;
+final PVector gravity = new PVector(0, 1);
+final float k = 10;
+final float len = 25;
+final float dampen = .95;
 
 void draw(){
   inAnyRope = inRope1 || inRope2;
@@ -59,7 +59,6 @@ void draw(){
   
   if (currentLevel == 5){
     text("And float up in a bubble!", 150, 300);
-    bubble = true;
   }
   
 }
@@ -71,7 +70,7 @@ void run() {
     r.display();
   }
   if (!inAnyRope && !bubble) candy.move(new PVector(0,30));
-  if (bubble) {candy.move(new PVector(0, -10));}
+  if (bubble) {candy.move(new PVector(0, -40));}
   candy.display();
 }
 
@@ -97,6 +96,7 @@ void loadLevel(int level) {
       // stars.add(new PVector(10, 0));
       onScreen = true;
       inRope1 = true; inRope2 = false;
+      bubble = false;
   }
   
   if (level == 2) {
@@ -107,6 +107,7 @@ void loadLevel(int level) {
       ropes.add(new Rope(new StaticNode(3*width / 4, 150), candy, 2));
       onScreen = true;
       inRope1 = true; inRope2 = true;
+      bubble = false;
   }
   
   if (level == 3) {
@@ -117,6 +118,7 @@ void loadLevel(int level) {
       ropes.add(new Rope(new StaticNode(5 * width / 7, 200), candy, 2));
       onScreen = true;
       inRope1 = true; inRope2 = true;
+      bubble = false;
   }
   
   if (level == 4) {
@@ -126,6 +128,7 @@ void loadLevel(int level) {
       ropes.add(new Rope(new StaticNode(width / 3, 100), candy, 1));
       onScreen = true;
       inRope1 = true; inRope2 = false;
+      bubble = false;
   }
   
   if (level == 5) {
@@ -135,6 +138,7 @@ void loadLevel(int level) {
       ropes.add(new Rope(new StaticNode(width / 2, 500), candy, 1));
       onScreen = true;
       inRope1 = true; inRope2 = false;
+      bubble = true;
   }
   
   if (level > 5) {
@@ -161,6 +165,7 @@ void mouseClicked() {
 }
 
 void keyPressed() { // shortcut
+  if (key == DELETE) loadLevel(currentLevel);
   if (key == 'd'){devMode = true;}
   else if (!Character.isDigit(key)){devMode = false;}
   if (key == '1' && devMode){currentLevel = 1; loadLevel(currentLevel);}
@@ -171,7 +176,9 @@ void keyPressed() { // shortcut
 }
 
 void mouseDragged() {
-  for (Rope r : ropes) {
-    r.isCut(pmouseX, pmouseY, mouseX, mouseY);
+  if (currentLevel > 0) {
+    for (Rope r : ropes) {
+      r.isCut(pmouseX, pmouseY, mouseX, mouseY);
+    }
   }
 }
