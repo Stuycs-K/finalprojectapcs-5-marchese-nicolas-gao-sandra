@@ -15,6 +15,7 @@ final float len = 25;
 final float dampen = .95;
 
 void draw(){
+  
   if (currentLevel > 5) {
       background(0); textSize(30);
       fill(255);
@@ -24,8 +25,11 @@ void draw(){
   
   inAnyRope = inRope1 || inRope2;
   textSize(20); 
+  background(bg);
+  
+  displayLevel();
   if (currentLevel > 0){
-    background(bg);
+    // background(bg);
     if(!candy.inMouth() && onScreen){
       onScreen = candy.isOnScreen();
       run();
@@ -36,37 +40,7 @@ void draw(){
       lose();
     }
   }
-  if (currentLevel == 0){
-    background(bg);
-    PImage logo = loadImage("Sprites/menulogo.png");
-    image(logo, 0, 0, 540, 300);
-    textSize(50); fill(0);
-    text("Click to start!", 150, 400);
-  }
-  if (currentLevel == 1){
-    text("Swipe ->", 150, 200);
-    text("This is Om Nom!", 100, 700);
-    text("He's really hungry.", 100, 720);
-    text("Cut the rope to give him the candy!", 100, 740);
-  }
-  if (currentLevel == 2){
-    text("Cut both ropes in one swipe!", 200, 700);
-  }
-  if (currentLevel == 3){
-    text("Use momentum!", 200, 230);
-  }
-  if (currentLevel == 4){
-    text("Be amazed at the magic portals!", 200, 500);
-    PImage p1 = loadImage("Sprites/portal1.png");
-    PImage p2 = loadImage("Sprites/portal2.png");
-    image(p1, 120, 770, 100, 100);
-    image(p2, 300, 100, 100, 100);
-    if (candy.position.y > 750){candy.position = new PVector(340, 100);}
-  }
   
-  if (currentLevel == 5){
-    text("And float up in a bubble!", 150, 300);
-  }
   
 }
 
@@ -98,16 +72,17 @@ void loadLevel(int level) {
   ropes = new ArrayList<Rope>();
   // stars = new ArrayList<PVector>();
   if (level > 0) support = loadImage("Sprites/char_support_0" + currentLevel + "_hd.png"); 
+  
   if (level == 1) {
-      bg = loadImage("Sprites/bg01.png"); bg.resize(540, 960);
-      winPosX = width / 2; winPosY = 800;
-      support.resize(140, 160);
-      candy = new Candy(width / 2, 200, true);
-      ropes.add(new Rope(new StaticNode(width / 2, 100), candy, 1));
-      // stars.add(new PVector(10, 0));
-      onScreen = true;
-      inRope1 = true; inRope2 = false;
-      bubble = false;
+    bg = loadImage("Sprites/bg01.png"); bg.resize(540, 960);
+    winPosX = width / 2; winPosY = 800;
+    support.resize(140, 160);
+    candy = new Candy(width / 2, 200, true);
+    ropes.add(new Rope(new StaticNode(width / 2, 100), candy, 1));
+    // stars.add(new PVector(10, 0));
+    onScreen = true;
+    inRope1 = true; inRope2 = false;
+    bubble = false;
   }
   
   if (level == 2) {
@@ -162,6 +137,33 @@ void loadLevel(int level) {
   //    text("More levels soon!", 20, 100);
   //}
   
+}
+
+void displayLevel() {
+  if (currentLevel == 0){
+    PImage logo = loadImage("Sprites/menulogo.png");
+    image(logo, 0, 0, 540, 300);
+    textSize(50); fill(0);
+    text("Click to start!", 150, 400);
+  } else if (currentLevel == 1) {
+    text("Swipe ->", 150, 200);
+    text("This is Om Nom!", 100, 700);
+    text("He's really hungry.", 100, 720);
+    text("Cut the rope to give him the candy!", 100, 740);
+  } else if (currentLevel == 2){
+    text("Cut both ropes in one swipe!", 200, 700);
+  } else if (currentLevel == 3){
+    text("Use momentum!", 200, 230);
+  } else if (currentLevel == 4){
+    text("Be amazed at the magic portals!", 200, 500);
+    PImage p1 = loadImage("Sprites/portal1.png");
+    PImage p2 = loadImage("Sprites/portal2.png");
+    image(p1, 120, 770, 100, 100);
+    image(p2, 300, 100, 100, 100);
+    if (candy.position.y > 750){candy.position = new PVector(340, 100);}
+  } else if (currentLevel == 5){
+    text("And float up in a bubble!", 150, 300);
+  }
 }
 
 void win() {
