@@ -9,10 +9,10 @@ boolean onScreen, devMode;
 boolean inAnyRope, bubble;
 boolean inRope1, inRope2; // for levels w/ multiple
 
-final PVector gravity = new PVector(0, 0.1);
-final float k = 5;
-final float len = 20;
-final float dampen = .96;
+final PVector gravity = new PVector(0, 1);
+final float k = 10;
+final float len = 25;
+final float dampen = .95;
 
 void draw(){
   inAnyRope = inRope1 || inRope2;
@@ -70,7 +70,7 @@ void run() {
     r.display();
   }
   if (!inAnyRope && !bubble) candy.move(new PVector(0,30));
-  if (bubble) {candy.move(new PVector(0, -10));}
+  if (bubble) {candy.move(new PVector(0, -40));}
   candy.display();
 }
 
