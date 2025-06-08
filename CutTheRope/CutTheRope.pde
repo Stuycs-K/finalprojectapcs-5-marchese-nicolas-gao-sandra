@@ -16,9 +16,9 @@ final float dampen = .95;
 
 void draw(){
   if (currentLevel > 5) {
-      background(0); textSize(50);
+      background(0); textSize(30);
       fill(255);
-      text("More levels soon!", 20, 100);
+      text("More levels soon!", width / 2 - 115, height / 2);
       return;
   }
   
