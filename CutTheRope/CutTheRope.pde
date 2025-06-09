@@ -133,18 +133,51 @@ void loadLevel(int level) {
       bg = loadImage("Sprites/bg05.png"); bg.resize(540, 960);
       winPosX = width / 2; winPosY = 100;
       support.resize(170, 180);
-      candy = new Candy(width / 2, 600, true);
-      ropes.add(new Rope(new StaticNode(width / 2, 500), candy, 1));
+      candy = new Candy(width / 2, 700, true);
+      ropes.add(new Rope(new StaticNode(width / 2, 800), candy, 1));
       onScreen = true;
       inRope1 = true; inRope2 = false;
       bubble = true;
   }
   
-  //if (level > 5) {
-  //    background(0); textSize(50);
-  //    fill(255);
-  //    text("More levels soon!", 20, 100);
-  //}
+    if (level == 6) {
+      bg = loadImage("Sprites/bg06.png"); bg.resize(540, 960);
+      winPosX = width / 2; winPosY = 100;
+      support.resize(170, 180);
+      candy = new Candy(width / 2, 700, true);
+      ropes.add(new Rope(new StaticNode(width / 2, 800), candy, 1));
+      onScreen = true;
+      inRope1 = true; inRope2 = false;
+      bubble = true;
+  }
+  
+    if (level == 7) {
+      bg = loadImage("Sprites/bg07.png"); bg.resize(540, 960);
+      winPosX = width / 2; winPosY = 100;
+      support.resize(170, 180);
+      candy = new Candy(width / 2, 700, true);
+      ropes.add(new Rope(new StaticNode(width / 2, 800), candy, 1));
+      onScreen = true;
+      inRope1 = true; inRope2 = false;
+      bubble = true;
+  }
+  
+    if (level == 8) {
+      bg = loadImage("Sprites/bg08.png"); bg.resize(540, 960);
+      winPosX = width / 2; winPosY = 100;
+      support.resize(170, 180);
+      candy = new Candy(width / 2, 700, true);
+      ropes.add(new Rope(new StaticNode(width / 2, 800), candy, 1));
+      onScreen = true;
+      inRope1 = true; inRope2 = false;
+      bubble = true;
+  }
+  
+  if (level > 8) {
+      background(0); textSize(50);
+      fill(255);
+      text("More levels later!", 20, 100);
+  }
   
 }
 
@@ -156,7 +189,8 @@ void displayLevel() {
     if (totalStars == 2){result = loadImage("Sprites/2star.png");}
     if (totalStars == 3){result = loadImage("Sprites/3star.png");}
     image(result, 100, 100, 350, 150);
-    textSize(50); text("Click to continue.", 150, 400);
+    textSize(30); text("Nice!", 220, 300);
+    textSize(40); text("Click to continue.", 100, 400);
     return;
   }
   
@@ -176,18 +210,18 @@ void displayLevel() {
     text("He's really hungry.", 100, 720);
     text("Cut the rope to give him the candy!", 100, 740);
   } else if (currentLevel == 2){
-    text("Cut both ropes in one swipe!", 200, 700);
+    text("Cut both ropes in one swipe!", 160, 700);
   } else if (currentLevel == 3){
-    text("Use momentum!", 200, 230);
+    text("Use momentum!", 100, 430);
   } else if (currentLevel == 4){
-    text("Be amazed at the magic portals!", 200, 500);
+    text("Be amazed at the magic portals!", 135, 600);
     PImage p1 = loadImage("Sprites/portal1.png");
     PImage p2 = loadImage("Sprites/portal2.png");
     image(p1, 120, 770, 100, 100);
     image(p2, 300, 100, 100, 100);
     if (candy.position.y > 750){candy.position = new PVector(340, 100);}
   } else if (currentLevel == 5){
-    text("And float up in a bubble!", 150, 300);
+    text("And float up in a bubble!", 160, 500);
   }
   
 }
@@ -204,6 +238,36 @@ void setupStars(int level){
     stars.add(new PVector(270, 470));
     stars.add(new PVector(270, 570));
   }
+  if (level == 3){
+    stars.add(new PVector(270, 400));
+    stars.add(new PVector(250, 490));
+    stars.add(new PVector(250, 580));
+  }
+  if (level == 4){
+    stars.add(new PVector(360, 270));
+    stars.add(new PVector(175, 470));
+    stars.add(new PVector(360, 470));
+  }
+  if (level == 5){
+    stars.add(new PVector(270, 200));
+    stars.add(new PVector(270, 250));
+    stars.add(new PVector(270, 300));
+  }
+  if (level == 6){
+    stars.add(new PVector(270, 200));
+    stars.add(new PVector(270, 250));
+    stars.add(new PVector(270, 300));
+  }
+  if (level == 7){
+    stars.add(new PVector(270, 200));
+    stars.add(new PVector(270, 250));
+    stars.add(new PVector(270, 300));
+  }
+  if (level == 8){
+    stars.add(new PVector(270, 200));
+    stars.add(new PVector(270, 250));
+    stars.add(new PVector(270, 300));
+  }
 }
 
 void drawStars() {
@@ -217,7 +281,7 @@ void getStar(){
   for (int i = 0; i <= 2; i++){
     PVector star = new PVector();
     try{star = stars.get(i);} catch(Exception e){}
-    if (abs(candy.getx() - star.x) < 20 && abs(candy.gety() - star.y) < 20){
+    if (abs(candy.getx() - star.x) < 30 && abs(candy.gety() - star.y) < 40){
       if (i == 0){gotStar1 = true;}
       if (i == 1){gotStar2 = true;}
       if (i == 2){gotStar3 = true;}
