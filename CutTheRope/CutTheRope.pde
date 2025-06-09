@@ -17,8 +17,6 @@ final float dampen = .95;
 
 void draw(){
   
-  getStar();
-  
   if (currentLevel > 5) {
       background(0); textSize(30);
       fill(255);
@@ -31,7 +29,9 @@ void draw(){
   background(bg);
   
   displayLevel();
+  
   if (currentLevel > 0){
+    getStar();
     // background(bg);
     if(!candy.inMouth() && onScreen){
       onScreen = candy.isOnScreen();
@@ -68,13 +68,15 @@ void setup(){
   stars = new ArrayList<PVector>();
   currentLevel = 0; scale = 3; onScreen = false; devMode = false;
   sprite = loadImage("Sprites/omnom.png"); sprite.resize(83, 83);
+  gotStar1 = false; gotStar2 = false; gotStar3 = false;
   inRope1 = false; inRope2 = false;
 }
 
 void loadLevel(int level) {
   
   ropes = new ArrayList<Rope>();
-  // stars = new ArrayList<PVector>();
+  stars = new ArrayList<PVector>();
+  gotStar1 = false; gotStar2 = false; gotStar3 = false;
   if (level > 0) support = loadImage("Sprites/char_support_0" + currentLevel + "_hd.png"); 
   
   if (level == 1) {
@@ -144,7 +146,12 @@ void loadLevel(int level) {
 }
 
 void displayLevel() {
-  drawStars(currentLevel);
+  
+  if (currentLevel > 0) {
+    setupStars(currentLevel);
+    drawStars(currentLevel);
+  }
+  
   if (currentLevel == 0){
     PImage logo = loadImage("Sprites/menulogo.png");
     image(logo, 0, 0, 540, 300);
@@ -169,22 +176,35 @@ void displayLevel() {
   } else if (currentLevel == 5){
     text("And float up in a bubble!", 150, 300);
   }
+  
+}
+
+void setupStars(int level){
+  stars = new ArrayList<PVector>();
+  if (level == 1){
+    stars.add(new PVector(270, 370));
+    stars.add(new PVector(270, 470));
+    stars.add(new PVector(270, 570));
+  }
 }
 
 void drawStars(int level) {
   PImage s = loadImage("Sprites/star.png");
   if (level == 1){
-    stars = new ArrayList<PVector>();
-    if (!gotStar1) {image(s, 250, 350, 40, 40); stars.add(new PVector(270, 370));}
-    if (!gotStar2) {image(s, 250, 450, 40, 40); stars.add(new PVector(270, 470));}
-    if (!gotStar3) {image(s, 250, 550, 40, 40); stars.add(new PVector(270, 570));}
+    if (!gotStar1) {image(s, 250, 350, 40, 40);}
+    if (!gotStar2) {image(s, 250, 450, 40, 40);}
+    if (!gotStar3) {image(s, 250, 550, 40, 40);}
   }
 }
 
 void getStar(){
-  for (PVector star : stars){
+  for (int i = 0; i < 2; i++){
+    PVector star = new PVector();
+    try{star = stars.get(i);} catch(Exception e){}
     if (abs(candy.getx() - star.x) < 20 && abs(candy.gety() - star.y) < 20){
-      
+      if (i == 0){gotStar1 = true;}
+      if (i == 1){gotStar2 = true;}
+      if (i == 2){gotStar3 = true;}
     }
   }
 }
