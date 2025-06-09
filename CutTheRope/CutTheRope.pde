@@ -4,10 +4,11 @@ int winPosX, winPosY, scale;
 int currentLevel;
 ArrayList<Rope> ropes;
 Candy candy;
-// ArrayList<PVector> stars; additional feature
+ArrayList<PVector> stars;
 boolean onScreen, devMode;
 boolean inAnyRope, bubble;
 boolean inRope1, inRope2; // for levels w/ multiple
+boolean gotStar1, gotStar2, gotStar3;
 
 final PVector gravity = new PVector(0, 1);
 final float k = 10;
@@ -15,6 +16,8 @@ final float len = 25;
 final float dampen = .95;
 
 void draw(){
+  
+  getStar();
   
   if (currentLevel > 5) {
       background(0); textSize(30);
@@ -62,6 +65,7 @@ void setup(){
   size(540,960); // 9:16 phone aspect ratio
   bg = loadImage("Sprites/bg00.png"); bg.resize(540, 960);
   background(bg);
+  stars = new ArrayList<PVector>();
   currentLevel = 0; scale = 3; onScreen = false; devMode = false;
   sprite = loadImage("Sprites/omnom.png"); sprite.resize(83, 83);
   inRope1 = false; inRope2 = false;
@@ -89,9 +93,9 @@ void loadLevel(int level) {
       bg = loadImage("Sprites/bg02.png"); bg.resize(540, 960);
       winPosX = width / 2; winPosY = 800;
       support.resize(150, 113);
-      candy = new Candy(width / 2, 150, true);
-      ropes.add(new Rope(new StaticNode(width / 4, 150), candy, 1));
-      ropes.add(new Rope(new StaticNode(3*width / 4, 150), candy, 2));
+      candy = new Candy(width / 2, 250, true);
+      ropes.add(new Rope(new StaticNode(2*width / 5, 150), candy, 1));
+      ropes.add(new Rope(new StaticNode(3*width / 5, 150), candy, 2));
       onScreen = true;
       inRope1 = true; inRope2 = true;
       bubble = false;
@@ -140,6 +144,7 @@ void loadLevel(int level) {
 }
 
 void displayLevel() {
+  drawStars(currentLevel);
   if (currentLevel == 0){
     PImage logo = loadImage("Sprites/menulogo.png");
     image(logo, 0, 0, 540, 300);
@@ -163,6 +168,24 @@ void displayLevel() {
     if (candy.position.y > 750){candy.position = new PVector(340, 100);}
   } else if (currentLevel == 5){
     text("And float up in a bubble!", 150, 300);
+  }
+}
+
+void drawStars(int level) {
+  PImage s = loadImage("Sprites/star.png");
+  if (level == 1){
+    stars = new ArrayList<PVector>();
+    if (!gotStar1) {image(s, 250, 350, 40, 40); stars.add(new PVector(270, 370));}
+    if (!gotStar2) {image(s, 250, 450, 40, 40); stars.add(new PVector(270, 470));}
+    if (!gotStar3) {image(s, 250, 550, 40, 40); stars.add(new PVector(270, 570));}
+  }
+}
+
+void getStar(){
+  for (PVector star : stars){
+    if (abs(candy.getx() - star.x) < 20 && abs(candy.gety() - star.y) < 20){
+      
+    }
   }
 }
 
