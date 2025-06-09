@@ -36,3 +36,13 @@ Added proposals, renamed this dev log.
 * Add developer shortcuts to make showcasing the game easier
 * Implement key presses to skip to a certain level
 * Document changes to game/process in readme
+
+### 2025-06-06 (Penultimate workday)
+* (Slightly) fix known issues with mechanics
+* Fix null pointer errors, other bugs with rope cutting
+* Add helper methods and clear up repetitive code
+
+### 2025-06-08 (Final workday)
+* Add three more levels (6,7,8) and respective backgrounds/features
+* Implement cut screen between levels with star collection amount
+* Add star collection system to each level
