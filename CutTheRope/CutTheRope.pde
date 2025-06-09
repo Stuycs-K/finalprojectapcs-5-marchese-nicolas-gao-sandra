@@ -54,7 +54,7 @@ void run() {
     r.display();
   }
   if (!inAnyRope && !bubble) candy.move(new PVector(0,30));
-  if (bubble) {candy.move(new PVector(0, -40));}
+  if (bubble) {candy.move(new PVector(0, -28));}
   candy.display();
 }
 
