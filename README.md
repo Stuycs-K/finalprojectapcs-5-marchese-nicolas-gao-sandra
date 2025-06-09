@@ -15,6 +15,6 @@ Clean visuals, fun and challenging levels.
 
 * That's it!
 
-# Dev Controel
+# Dev Controls
 
 * press d then a level number > 0 to jump to that level
