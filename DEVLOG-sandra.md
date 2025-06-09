@@ -25,5 +25,18 @@ spent class period (41min) + 30min trying to get gravity into rope mechanics
 ### 2025-06-01 - Rope.stretch()
 spent 2hrs trying debug rope motion
 
-### 2025-06-02 Rope.stretch() fixed + other basic mechanics
+### 2025-06-02 - Rope.stretch() fixed + other basic mechanics
 spent 1hr debugged rope motion, added rudimentary win / lose indicators, cutting motion
+
+### 2025-06-03 - attempting fix ropes in class
+spent class period (41min) trying to fix ropes; did not reach any better state than started with
+
+### 2025-06-04 - more ropes + fields
+spent class period (41min) testing out constants for ropes + keeping ropes constant length + onRope field to track when only gravity applies
+
+### 2025-06-06 - adjusting force calculations
+spent class period (41min) adjusting force calculations to only have gravity when rope is not at max and cancel gravity when rope reaches max
+
+# 2025-06-08 - adjusting pendulum motion + sprites
+spent 30min adjusting calculations to get more swinging motion
+spent 1hr adding character support sprites (ledges) + displaying them

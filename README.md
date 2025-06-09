@@ -11,4 +11,10 @@ Clean visuals, fun and challenging levels.
 
 * Swipe to cut ropes
 
+* Press delete to restart level
+
 * That's it!
+
+# Dev Controel
+
+* press d then a level number > 0 to jump to that level
