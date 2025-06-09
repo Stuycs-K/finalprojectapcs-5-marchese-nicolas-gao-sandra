@@ -46,3 +46,5 @@ Added proposals, renamed this dev log.
 * Add three more levels (6,7,8) and respective backgrounds/features
 * Implement cut screen between levels with star collection amount
 * Add star collection system to each level
+
+I believe this document accurately reflects the contributions of my teammate.
