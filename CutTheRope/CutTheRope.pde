@@ -4,8 +4,8 @@ int winPosX, winPosY, scale;
 int currentLevel;
 ArrayList<Rope> ropes;
 Candy candy;
-ArrayList<PVector> stars;
-boolean onScreen, devMode;
+ArrayList<PVector> stars; int totalStars;
+boolean onScreen, devMode, midScreen;
 boolean inAnyRope, bubble;
 boolean inRope1, inRope2; // for levels w/ multiple
 boolean gotStar1, gotStar2, gotStar3;
@@ -16,14 +16,7 @@ final float len = 25;
 final float dampen = .95;
 
 void draw(){
-  
-  if (currentLevel > 5) {
-      background(0); textSize(30);
-      fill(255);
-      text("More levels soon!", width / 2 - 115, height / 2);
-      return;
-  }
-  
+
   inAnyRope = inRope1 || inRope2;
   textSize(20); 
   background(bg);
@@ -43,7 +36,6 @@ void draw(){
       lose();
     }
   }
-  
   
 }
 
@@ -66,7 +58,7 @@ void setup(){
   bg = loadImage("Sprites/bg00.png"); bg.resize(540, 960);
   background(bg);
   stars = new ArrayList<PVector>();
-  currentLevel = 0; scale = 3; onScreen = false; devMode = false;
+  currentLevel = 0; scale = 3; onScreen = false; devMode = false; midScreen = false;
   sprite = loadImage("Sprites/omnom.png"); sprite.resize(83, 83);
   gotStar1 = false; gotStar2 = false; gotStar3 = false;
   inRope1 = false; inRope2 = false;
@@ -77,7 +69,19 @@ void loadLevel(int level) {
   ropes = new ArrayList<Rope>();
   stars = new ArrayList<PVector>();
   gotStar1 = false; gotStar2 = false; gotStar3 = false;
-  if (level > 0) support = loadImage("Sprites/char_support_0" + currentLevel + "_hd.png"); 
+  
+  if (midScreen){
+    candy = new Candy(0,0,false); winPosX = 0; winPosY = 0; onScreen = false;
+    inRope1 = false; inRope2 = false; bubble = false;
+    bg = loadImage("Sprites/mid_screen_bgr.png"); bg.resize(540, 960);
+    return;
+  }
+  
+  else{
+    totalStars = 0;
+  }
+  
+  if (level > 0) support = loadImage("Sprites/char_support_0" + currentLevel + "_hd.png");
   
   if (level == 1) {
     bg = loadImage("Sprites/bg01.png"); bg.resize(540, 960);
@@ -85,7 +89,6 @@ void loadLevel(int level) {
     support.resize(140, 160);
     candy = new Candy(width / 2, 200, true);
     ropes.add(new Rope(new StaticNode(width / 2, 100), candy, 1));
-    // stars.add(new PVector(10, 0));
     onScreen = true;
     inRope1 = true; inRope2 = false;
     bubble = false;
@@ -147,9 +150,19 @@ void loadLevel(int level) {
 
 void displayLevel() {
   
+  if (midScreen){
+    PImage result = loadImage("Sprites/3star.png");
+    if (totalStars == 1){result = loadImage("Sprites/1star.png");}
+    if (totalStars == 2){result = loadImage("Sprites/2star.png");}
+    if (totalStars == 3){result = loadImage("Sprites/3star.png");}
+    image(result, 100, 100, 350, 150);
+    textSize(50); text("Click to continue.", 150, 400);
+    return;
+  }
+  
   if (currentLevel > 0) {
     setupStars(currentLevel);
-    drawStars(currentLevel);
+    drawStars();
   }
   
   if (currentLevel == 0){
@@ -186,33 +199,35 @@ void setupStars(int level){
     stars.add(new PVector(270, 470));
     stars.add(new PVector(270, 570));
   }
-}
-
-void drawStars(int level) {
-  PImage s = loadImage("Sprites/star.png");
-  if (level == 1){
-    if (!gotStar1) {image(s, 250, 350, 40, 40);}
-    if (!gotStar2) {image(s, 250, 450, 40, 40);}
-    if (!gotStar3) {image(s, 250, 550, 40, 40);}
+  if (level == 2){
+    stars.add(new PVector(270, 370));
+    stars.add(new PVector(270, 470));
+    stars.add(new PVector(270, 570));
   }
 }
 
+void drawStars() {
+  PImage s = loadImage("Sprites/star.png");
+  if (!gotStar1) {image(s, stars.get(0).x-20, stars.get(0).y, 40, 40);}
+  if (!gotStar2) {image(s, stars.get(1).x-20, stars.get(1).y, 40, 40);}
+  if (!gotStar3) {image(s, stars.get(2).x-20, stars.get(2).y, 40, 40);}
+}
+
 void getStar(){
-  for (int i = 0; i < 2; i++){
+  for (int i = 0; i <= 2; i++){
     PVector star = new PVector();
     try{star = stars.get(i);} catch(Exception e){}
     if (abs(candy.getx() - star.x) < 20 && abs(candy.gety() - star.y) < 20){
       if (i == 0){gotStar1 = true;}
       if (i == 1){gotStar2 = true;}
       if (i == 2){gotStar3 = true;}
+      totalStars++;
     }
   }
 }
 
 void win() {
-  try{text("Win", 100, 500); Thread.sleep(100);} catch(Exception e){}
-  currentLevel++;
-  loadLevel(currentLevel);
+  midScreen = true;
   loadLevel(currentLevel);
 }
 
@@ -221,7 +236,7 @@ void lose() {
 }
 
 void mouseClicked() {
-  if (currentLevel == 0){currentLevel++; loadLevel(currentLevel);}
+  if (currentLevel == 0 || midScreen){currentLevel++;  midScreen = false; loadLevel(currentLevel);}
 }
 
 void keyPressed() { // shortcut
