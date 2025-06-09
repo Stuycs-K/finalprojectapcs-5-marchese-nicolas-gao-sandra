@@ -198,7 +198,7 @@ void displayLevel() {
   
   if (currentLevel > 0) {
     setupStars(currentLevel);
-    drawStars();
+    if (stars.size() > 0) drawStars();
   }
   
   if (currentLevel == 0){
