@@ -40,3 +40,5 @@ spent class period (41min) adjusting force calculations to only have gravity whe
 # 2025-06-08 - adjusting pendulum motion + sprites
 spent 30min adjusting calculations to get more swinging motion
 spent 1hr adding character support sprites (ledges) + displaying them
+
+I believe this document accurately reflects the contributions of my teammate.
